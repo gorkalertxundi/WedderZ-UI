@@ -41,6 +41,7 @@ public class FrameTMP extends JFrame{
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gridBagLayout);
 		
+		//Current Day Wheather Panel
 		JPanel currentWeatherPanel = new JPanel();
 		currentWeatherPanel.setBackground(Color.WHITE);
 		GridBagConstraints gbc_currentWeatherPanel = new GridBagConstraints();
@@ -166,6 +167,7 @@ public class FrameTMP extends JFrame{
 		gbc_lblMs.gridy = 6;
 		currentWeatherPanel.add(lblMs, gbc_lblMs);
 		
+		//Day7
 		JPanel day7 = new JPanel();
 		day7.setBackground(Color.WHITE);
 		GridBagConstraints gbc_day7 = new GridBagConstraints();
@@ -256,6 +258,7 @@ public class FrameTMP extends JFrame{
 		gbc_lblDay7HumidityValue.gridy = 4;
 		day7.add(lblDay7HumidityValue, gbc_lblDay7HumidityValue);
 		
+		//Day6
 		JPanel day6 = new JPanel();
 		day6.setBackground(Color.WHITE);
 		GridBagConstraints gbc_day6 = new GridBagConstraints();
@@ -302,7 +305,7 @@ public class FrameTMP extends JFrame{
 		gbc_lblDay6MinTemp.gridy = 2;
 		day6.add(lblDay6MinTemp, gbc_lblDay6MinTemp);
 		
-		JLabel lblDay6MinTempValue = new JLabel("4 \u00BAC");
+		JLabel lblDay6MinTempValue = new JLabel("3 \u00BAC");
 		lblDay6MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay6MinTempValue = new GridBagConstraints();
 		gbc_lblDay6MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -328,15 +331,15 @@ public class FrameTMP extends JFrame{
 		gbc_lblDay6MaxTempValue.gridy = 3;
 		day6.add(lblDay6MaxTempValue, gbc_lblDay6MaxTempValue);
 		
-		JLabel lblDay7Humidity_1 = new JLabel(" Humidity:");
-		lblDay7Humidity_1.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
-		lblDay7Humidity_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblDay7Humidity_1 = new GridBagConstraints();
-		gbc_lblDay7Humidity_1.anchor = GridBagConstraints.WEST;
-		gbc_lblDay7Humidity_1.insets = new Insets(0, 10, 10, 5);
-		gbc_lblDay7Humidity_1.gridx = 0;
-		gbc_lblDay7Humidity_1.gridy = 4;
-		day6.add(lblDay7Humidity_1, gbc_lblDay7Humidity_1);
+		JLabel lblDay6Humidity = new JLabel(" Humidity:");
+		lblDay6Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay6Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay6Humidity = new GridBagConstraints();
+		gbc_lblDay6Humidity.anchor = GridBagConstraints.WEST;
+		gbc_lblDay6Humidity.insets = new Insets(0, 10, 10, 5);
+		gbc_lblDay6Humidity.gridx = 0;
+		gbc_lblDay6Humidity.gridy = 4;
+		day6.add(lblDay6Humidity, gbc_lblDay6Humidity);
 		
 		JLabel lblDay7HumidityValue_1 = new JLabel("78.0 %");
 		lblDay7HumidityValue_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -346,6 +349,188 @@ public class FrameTMP extends JFrame{
 		gbc_lblDay7HumidityValue_1.gridy = 4;
 		day6.add(lblDay7HumidityValue_1, gbc_lblDay7HumidityValue_1);
 		
+		//Day5
+		JPanel day5 = new JPanel();
+		day5.setBackground(Color.WHITE);
+		GridBagConstraints gbc_day5 = new GridBagConstraints();
+		gbc_day5.anchor = GridBagConstraints.SOUTH;
+		gbc_day5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_day5.insets = new Insets(0, 50, 40, 5);
+		gbc_day5.gridx = 2;
+		gbc_day5.gridy = 1;
+		panel.add(day5, gbc_day5);
+		GridBagLayout gbl_day5 = new GridBagLayout();
+		gbl_day5.columnWidths = new int[]{41, 0, 0, 0};
+		gbl_day5.rowHeights = new int[]{20, 0, 0, 0, 0, 0};
+		gbl_day5.columnWeights = new double[]{0.0, 0.0, 4.9E-324, Double.MIN_VALUE};
+		gbl_day5.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		day5.setLayout(gbl_day5);
+		
+		JLabel lblDayWeek5 = new JLabel("Miércoles");
+		lblDayWeek5.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblDayWeek5 = new GridBagConstraints();
+		gbc_lblDayWeek5.anchor = GridBagConstraints.NORTH;
+		gbc_lblDayWeek5.gridwidth = 3;
+		gbc_lblDayWeek5.insets = new Insets(5, 40, 5, 40);
+		gbc_lblDayWeek5.gridx = 0;
+		gbc_lblDayWeek5.gridy = 0;
+		day5.add(lblDayWeek5, gbc_lblDayWeek5);
+		
+		JLabel lblDay5Temperature = new JLabel("13 \u00BAC");
+		lblDay5Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\b_2_cloudy.png"));
+		lblDay5Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblDay5Temperature = new GridBagConstraints();
+		gbc_lblDay5Temperature.gridwidth = 3;
+		gbc_lblDay5Temperature.insets = new Insets(0, 10, 5, 10);
+		gbc_lblDay5Temperature.gridx = 0;
+		gbc_lblDay5Temperature.gridy = 1;
+		day5.add(lblDay5Temperature, gbc_lblDay5Temperature);
+		
+		JLabel lblDay5MinTemp = new JLabel("Min. Temp.");
+		lblDay5MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay5MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay5MinTemp = new GridBagConstraints();
+		gbc_lblDay5MinTemp.anchor = GridBagConstraints.WEST;
+		gbc_lblDay5MinTemp.insets = new Insets(0, 5, 5, 5);
+		gbc_lblDay5MinTemp.gridx = 0;
+		gbc_lblDay5MinTemp.gridy = 2;
+		day5.add(lblDay5MinTemp, gbc_lblDay5MinTemp);
+		
+		JLabel lblDay5MinTempValue = new JLabel("10 \u00BAC");
+		lblDay5MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay5MinTempValue = new GridBagConstraints();
+		gbc_lblDay5MinTempValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay5MinTempValue.gridx = 1;
+		gbc_lblDay5MinTempValue.gridy = 2;
+		day5.add(lblDay5MinTempValue, gbc_lblDay5MinTempValue);
+		
+		JLabel lblDay5MaxTemp = new JLabel("Max. Temp.");
+		lblDay5MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay5MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay5MaxTemp = new GridBagConstraints();
+		gbc_lblDay5MaxTemp.anchor = GridBagConstraints.WEST;
+		gbc_lblDay5MaxTemp.insets = new Insets(0, 5, 5, 5);
+		gbc_lblDay5MaxTemp.gridx = 0;
+		gbc_lblDay5MaxTemp.gridy = 3;
+		day5.add(lblDay5MaxTemp, gbc_lblDay5MaxTemp);
+		
+		JLabel lblDay5MaxTempValue = new JLabel("16 \u00BAC");
+		lblDay5MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay5MaxTempValue = new GridBagConstraints();
+		gbc_lblDay5MaxTempValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay5MaxTempValue.gridx = 1;
+		gbc_lblDay5MaxTempValue.gridy = 3;
+		day5.add(lblDay5MaxTempValue, gbc_lblDay5MaxTempValue);
+		
+		JLabel lblDay5Humidity = new JLabel(" Humidity:");
+		lblDay5Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay5Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay5Humidity = new GridBagConstraints();
+		gbc_lblDay5Humidity.anchor = GridBagConstraints.WEST;
+		gbc_lblDay5Humidity.insets = new Insets(0, 10, 10, 5);
+		gbc_lblDay5Humidity.gridx = 0;
+		gbc_lblDay5Humidity.gridy = 4;
+		day5.add(lblDay5Humidity, gbc_lblDay5Humidity);
+		
+		JLabel lblDay5HumidityValue = new JLabel("43.0 %");
+		lblDay5HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay5HumidityValue = new GridBagConstraints();
+		gbc_lblDay5HumidityValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay5HumidityValue.gridx = 1;
+		gbc_lblDay5HumidityValue.gridy = 4;
+		day5.add(lblDay5HumidityValue, gbc_lblDay5HumidityValue);
+		
+		//Day4
+		JPanel day4 = new JPanel();
+		day4.setBackground(Color.WHITE);
+		GridBagConstraints gbc_day4 = new GridBagConstraints();
+		gbc_day4.anchor = GridBagConstraints.SOUTH;
+		gbc_day4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_day4.insets = new Insets(0, 50, 40, 5);
+		gbc_day4.gridx = 3;
+		gbc_day4.gridy = 1;
+		panel.add(day4, gbc_day4);
+		GridBagLayout gbl_day4 = new GridBagLayout();
+		gbl_day4.columnWidths = new int[]{41, 0, 0, 0};
+		gbl_day4.rowHeights = new int[]{20, 0, 0, 0, 0, 0};
+		gbl_day4.columnWeights = new double[]{0.0, 0.0, 4.9E-324, Double.MIN_VALUE};
+		gbl_day4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		day4.setLayout(gbl_day4);
+		
+		JLabel lblDayWeek4 = new JLabel("Jueves");
+		lblDayWeek4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblDayWeek4 = new GridBagConstraints();
+		gbc_lblDayWeek4.anchor = GridBagConstraints.NORTH;
+		gbc_lblDayWeek4.gridwidth = 3;
+		gbc_lblDayWeek4.insets = new Insets(5, 40, 5, 40);
+		gbc_lblDayWeek4.gridx = 0;
+		gbc_lblDayWeek4.gridy = 0;
+		day4.add(lblDayWeek4, gbc_lblDayWeek4);
+		
+		JLabel lblDay4Temperature = new JLabel("19 \u00BAC");
+		lblDay4Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\b_1_partly_cloudy.png"));
+		lblDay4Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblDay4Temperature = new GridBagConstraints();
+		gbc_lblDay4Temperature.gridwidth = 3;
+		gbc_lblDay4Temperature.insets = new Insets(0, 10, 5, 10);
+		gbc_lblDay4Temperature.gridx = 0;
+		gbc_lblDay4Temperature.gridy = 1;
+		day4.add(lblDay4Temperature, gbc_lblDay4Temperature);
+		
+		JLabel lblDay4MinTemp = new JLabel("Min. Temp.");
+		lblDay4MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay4MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay4MinTemp = new GridBagConstraints();
+		gbc_lblDay4MinTemp.anchor = GridBagConstraints.WEST;
+		gbc_lblDay4MinTemp.insets = new Insets(0, 5, 5, 5);
+		gbc_lblDay4MinTemp.gridx = 0;
+		gbc_lblDay4MinTemp.gridy = 2;
+		day4.add(lblDay4MinTemp, gbc_lblDay4MinTemp);
+		
+		JLabel lblDay4MinTempValue = new JLabel("17 \u00BAC");
+		lblDay4MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay4MinTempValue = new GridBagConstraints();
+		gbc_lblDay4MinTempValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay4MinTempValue.gridx = 1;
+		gbc_lblDay4MinTempValue.gridy = 2;
+		day4.add(lblDay4MinTempValue, gbc_lblDay4MinTempValue);
+		
+		JLabel lblDay4MaxTemp = new JLabel("Max. Temp.");
+		lblDay4MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay4MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay4MaxTemp = new GridBagConstraints();
+		gbc_lblDay4MaxTemp.anchor = GridBagConstraints.WEST;
+		gbc_lblDay4MaxTemp.insets = new Insets(0, 5, 5, 5);
+		gbc_lblDay4MaxTemp.gridx = 0;
+		gbc_lblDay4MaxTemp.gridy = 3;
+		day4.add(lblDay4MaxTemp, gbc_lblDay4MaxTemp);
+		
+		JLabel lblDay4MaxTempValue = new JLabel("22 \u00BAC");
+		lblDay4MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay4MaxTempValue = new GridBagConstraints();
+		gbc_lblDay4MaxTempValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay4MaxTempValue.gridx = 1;
+		gbc_lblDay4MaxTempValue.gridy = 3;
+		day4.add(lblDay4MaxTempValue, gbc_lblDay4MaxTempValue);
+		
+		JLabel lblDay4Humidity = new JLabel(" Humidity:");
+		lblDay4Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay4Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblDay4Humidity = new GridBagConstraints();
+		gbc_lblDay4Humidity.anchor = GridBagConstraints.WEST;
+		gbc_lblDay4Humidity.insets = new Insets(0, 10, 10, 5);
+		gbc_lblDay4Humidity.gridx = 0;
+		gbc_lblDay4Humidity.gridy = 4;
+		day4.add(lblDay4Humidity, gbc_lblDay4Humidity);
+		
+		JLabel lblDay4HumidityValue = new JLabel("27.0 %");
+		lblDay4HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDay4HumidityValue = new GridBagConstraints();
+		gbc_lblDay4HumidityValue.insets = new Insets(0, 5, 5, 15);
+		gbc_lblDay4HumidityValue.gridx = 1;
+		gbc_lblDay4HumidityValue.gridy = 4;
+		day4.add(lblDay4HumidityValue, gbc_lblDay4HumidityValue);
+				
 		return panel;
 	}
 
