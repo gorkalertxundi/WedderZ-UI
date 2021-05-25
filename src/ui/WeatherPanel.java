@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -67,6 +71,27 @@ public class WeatherPanel extends JPanel {
 		day3Panel(this);
 		day2Panel(this);
 		day1Panel(this);
+		
+		setValuesTEMPORAL(); // BORRAR
+	}
+	
+	
+	private void setValuesTEMPORAL() { // BORRAR ESTO VA EN EL CONTROLADOR
+		setCurrentWeatherValues("Orio", "ES", 0, 26, 15, 27, 1018.3, 66, 3.47);
+		setPast1DaysValues(getDayString(1), 1, 19.4, 15, 22, 43);
+		setPast2DaysValues(getDayString(2), 2, 13.8, 15, 22, 43);
+		setPast3DaysValues(getDayString(3), 3, 9.5, 15, 22, 43);
+		setPast4DaysValues(getDayString(4), 4, 4.3, 15, 22, 43);
+		setPast5DaysValues(getDayString(5), 5, -3.6, 15, 22, 43);
+		
+	}
+	
+	private String getDayString(int n) { // ESTO MEJOR EN EL CONTROLADOR
+		Date date = new Date(System.currentTimeMillis()-n*24*60*60*1000);
+	    DateFormat formatter = new SimpleDateFormat("EEEE", getLocale());
+	    char[] arr = formatter.format(date).toCharArray();
+	    arr[0] = Character.toUpperCase(arr[0]);
+	    return new String(arr);
 	}
 	
 	private void day1Panel(JPanel panel) {
@@ -87,7 +112,7 @@ public class WeatherPanel extends JPanel {
 		gbl_day1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		day1.setLayout(gbl_day1);
 		
-		lblDayWeek1 = new JLabel("Viernes");
+		lblDayWeek1 = new JLabel();
 		lblDayWeek1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDayWeek1 = new GridBagConstraints();
 		gbc_lblDayWeek1.anchor = GridBagConstraints.NORTH;
@@ -97,8 +122,8 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDayWeek1.gridy = 0;
 		day1.add(lblDayWeek1, gbc_lblDayWeek1);
 		
-		lblDay1Temperature = new JLabel("24 \u00BAC");
-		lblDay1Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\b_1_partly_cloudy.png"));
+		lblDay1Temperature = new JLabel();
+//		lblDay1Temperature.setIcon(new ImageIcon("icons/partly_cloud.png"));
 		lblDay1Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDay1Temperature = new GridBagConstraints();
 		gbc_lblDay1Temperature.gridwidth = 3;
@@ -108,7 +133,7 @@ public class WeatherPanel extends JPanel {
 		day1.add(lblDay1Temperature, gbc_lblDay1Temperature);
 		
 		JLabel lblDay1MinTemp = new JLabel("Min. Temp.");
-		lblDay1MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay1MinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblDay1MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay1MinTemp = new GridBagConstraints();
 		gbc_lblDay1MinTemp.anchor = GridBagConstraints.WEST;
@@ -117,7 +142,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay1MinTemp.gridy = 2;
 		day1.add(lblDay1MinTemp, gbc_lblDay1MinTemp);
 		
-		lblDay1MinTempValue = new JLabel("20 \u00BAC");
+		lblDay1MinTempValue = new JLabel();
 		lblDay1MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay1MinTempValue = new GridBagConstraints();
 		gbc_lblDay1MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -126,7 +151,7 @@ public class WeatherPanel extends JPanel {
 		day1.add(lblDay1MinTempValue, gbc_lblDay1MinTempValue);
 		
 		JLabel lblDay1MaxTemp = new JLabel("Max. Temp.");
-		lblDay1MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay1MaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblDay1MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay1MaxTemp = new GridBagConstraints();
 		gbc_lblDay1MaxTemp.anchor = GridBagConstraints.WEST;
@@ -135,7 +160,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay1MaxTemp.gridy = 3;
 		day1.add(lblDay1MaxTemp, gbc_lblDay1MaxTemp);
 		
-		lblDay1MaxTempValue = new JLabel("27 \u00BAC");
+		lblDay1MaxTempValue = new JLabel();
 		lblDay1MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay1MaxTempValue = new GridBagConstraints();
 		gbc_lblDay1MaxTempValue.insets = new Insets(0, 5, 5, 15);
@@ -144,7 +169,7 @@ public class WeatherPanel extends JPanel {
 		day1.add(lblDay1MaxTempValue, gbc_lblDay1MaxTempValue);
 		
 		JLabel lblDay1Humidity = new JLabel(" Humidity:");
-		lblDay1Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay1Humidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblDay1Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay1Humidity = new GridBagConstraints();
 		gbc_lblDay1Humidity.anchor = GridBagConstraints.WEST;
@@ -153,7 +178,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay1Humidity.gridy = 4;
 		day1.add(lblDay1Humidity, gbc_lblDay1Humidity);
 		
-		lblDay1HumidityValue = new JLabel("12.0 %");
+		lblDay1HumidityValue = new JLabel();
 		lblDay1HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay1HumidityValue = new GridBagConstraints();
 		gbc_lblDay1HumidityValue.insets = new Insets(0, 5, 5, 15);
@@ -180,7 +205,7 @@ public class WeatherPanel extends JPanel {
 		gbl_day2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		day2.setLayout(gbl_day2);
 		
-		lblDayWeek2 = new JLabel("Jueves");
+		lblDayWeek2 = new JLabel();
 		lblDayWeek2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDayWeek2 = new GridBagConstraints();
 		gbc_lblDayWeek2.anchor = GridBagConstraints.NORTH;
@@ -190,8 +215,8 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDayWeek2.gridy = 0;
 		day2.add(lblDayWeek2, gbc_lblDayWeek2);
 		
-		lblDay2Temperature = new JLabel("19 \u00BAC");
-		lblDay2Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\b_2_cloudy.png"));
+		lblDay2Temperature = new JLabel();
+//		lblDay2Temperature.setIcon(new ImageIcon("icons/b_2_cloudy.png"));
 		lblDay2Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDay2Temperature = new GridBagConstraints();
 		gbc_lblDay2Temperature.gridwidth = 3;
@@ -201,7 +226,7 @@ public class WeatherPanel extends JPanel {
 		day2.add(lblDay2Temperature, gbc_lblDay2Temperature);
 		
 		JLabel lblDay2MinTemp = new JLabel("Min. Temp.");
-		lblDay2MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay2MinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblDay2MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay2MinTemp = new GridBagConstraints();
 		gbc_lblDay2MinTemp.anchor = GridBagConstraints.WEST;
@@ -210,7 +235,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay2MinTemp.gridy = 2;
 		day2.add(lblDay2MinTemp, gbc_lblDay2MinTemp);
 		
-		lblDay2MinTempValue = new JLabel("17 \u00BAC");
+		lblDay2MinTempValue = new JLabel();
 		lblDay2MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay2MinTempValue = new GridBagConstraints();
 		gbc_lblDay2MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -219,7 +244,7 @@ public class WeatherPanel extends JPanel {
 		day2.add(lblDay2MinTempValue, gbc_lblDay2MinTempValue);
 		
 		JLabel lblDay2MaxTemp = new JLabel("Max. Temp.");
-		lblDay2MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay2MaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblDay2MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay2MaxTemp = new GridBagConstraints();
 		gbc_lblDay2MaxTemp.anchor = GridBagConstraints.WEST;
@@ -228,7 +253,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay2MaxTemp.gridy = 3;
 		day2.add(lblDay2MaxTemp, gbc_lblDay2MaxTemp);
 		
-		lblDay2MaxTempValue = new JLabel("22 \u00BAC");
+		lblDay2MaxTempValue = new JLabel();
 		lblDay2MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay2MaxTempValue = new GridBagConstraints();
 		gbc_lblDay2MaxTempValue.insets = new Insets(0, 5, 5, 15);
@@ -237,7 +262,7 @@ public class WeatherPanel extends JPanel {
 		day2.add(lblDay2MaxTempValue, gbc_lblDay2MaxTempValue);
 		
 		JLabel lblDay2Humidity = new JLabel(" Humidity:");
-		lblDay2Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay2Humidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblDay2Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay2Humidity = new GridBagConstraints();
 		gbc_lblDay2Humidity.anchor = GridBagConstraints.WEST;
@@ -246,7 +271,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay2Humidity.gridy = 4;
 		day2.add(lblDay2Humidity, gbc_lblDay2Humidity);
 		
-		lblDay2HumidityValue = new JLabel("27.0 %");
+		lblDay2HumidityValue = new JLabel();
 		lblDay2HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay2HumidityValue = new GridBagConstraints();
 		gbc_lblDay2HumidityValue.insets = new Insets(0, 5, 5, 15);
@@ -273,7 +298,7 @@ public class WeatherPanel extends JPanel {
 		gbl_day3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		day3.setLayout(gbl_day3);
 		
-		lblDayWeek3 = new JLabel("Mi�rcoles");
+		lblDayWeek3 = new JLabel();
 		lblDayWeek3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDayWeek3 = new GridBagConstraints();
 		gbc_lblDayWeek3.anchor = GridBagConstraints.NORTH;
@@ -283,8 +308,8 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDayWeek3.gridy = 0;
 		day3.add(lblDayWeek3, gbc_lblDayWeek3);
 		
-		lblDay3Temperature = new JLabel("13 \u00BAC");
-		lblDay3Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\c_1_rainy.png"));
+		lblDay3Temperature = new JLabel();
+//		lblDay3Temperature.setIcon(new ImageIcon("icons/c_1_rainy.png"));
 		lblDay3Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDay3Temperature = new GridBagConstraints();
 		gbc_lblDay3Temperature.gridwidth = 3;
@@ -294,7 +319,7 @@ public class WeatherPanel extends JPanel {
 		day3.add(lblDay3Temperature, gbc_lblDay3Temperature);
 		
 		JLabel lblDay3MinTemp = new JLabel("Min. Temp.");
-		lblDay3MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay3MinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblDay3MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay3MinTemp = new GridBagConstraints();
 		gbc_lblDay3MinTemp.anchor = GridBagConstraints.WEST;
@@ -303,7 +328,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay3MinTemp.gridy = 2;
 		day3.add(lblDay3MinTemp, gbc_lblDay3MinTemp);
 		
-		lblDay3MinTempValue = new JLabel("10 \u00BAC");
+		lblDay3MinTempValue = new JLabel();
 		lblDay3MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay3MinTempValue = new GridBagConstraints();
 		gbc_lblDay3MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -312,7 +337,7 @@ public class WeatherPanel extends JPanel {
 		day3.add(lblDay3MinTempValue, gbc_lblDay3MinTempValue);
 		
 		JLabel lblDay3MaxTemp = new JLabel("Max. Temp.");
-		lblDay3MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay3MaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblDay3MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay3MaxTemp = new GridBagConstraints();
 		gbc_lblDay3MaxTemp.anchor = GridBagConstraints.WEST;
@@ -321,7 +346,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay3MaxTemp.gridy = 3;
 		day3.add(lblDay3MaxTemp, gbc_lblDay3MaxTemp);
 		
-		lblDay3MaxTempValue = new JLabel("16 \u00BAC");
+		lblDay3MaxTempValue = new JLabel();
 		lblDay3MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay3MaxTempValue = new GridBagConstraints();
 		gbc_lblDay3MaxTempValue.insets = new Insets(0, 5, 5, 15);
@@ -330,7 +355,7 @@ public class WeatherPanel extends JPanel {
 		day3.add(lblDay3MaxTempValue, gbc_lblDay3MaxTempValue);
 		
 		JLabel lblDay3Humidity = new JLabel(" Humidity:");
-		lblDay3Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay3Humidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblDay3Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay3Humidity = new GridBagConstraints();
 		gbc_lblDay3Humidity.anchor = GridBagConstraints.WEST;
@@ -339,7 +364,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay3Humidity.gridy = 4;
 		day3.add(lblDay3Humidity, gbc_lblDay3Humidity);
 		
-		lblDay3HumidityValue = new JLabel("43.0 %");
+		lblDay3HumidityValue = new JLabel();
 		lblDay3HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay3HumidityValue = new GridBagConstraints();
 		gbc_lblDay3HumidityValue.insets = new Insets(0, 5, 5, 15);
@@ -366,7 +391,7 @@ public class WeatherPanel extends JPanel {
 		gbl_day4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		day4.setLayout(gbl_day4);
 		
-		lblDayWeek4 = new JLabel("Martes");
+		lblDayWeek4 = new JLabel();
 		lblDayWeek4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDayWeek4 = new GridBagConstraints();
 		gbc_lblDayWeek4.anchor = GridBagConstraints.NORTH;
@@ -376,8 +401,8 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDayWeek4.gridy = 0;
 		day4.add(lblDayWeek4, gbc_lblDayWeek4);
 		
-		lblDay4Temperature = new JLabel("9 \u00BAC");
-		lblDay4Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\c_3_thunderstorm.png"));
+		lblDay4Temperature = new JLabel();
+//		lblDay4Temperature.setIcon(new ImageIcon("icons/c_3_thunderstorm.png"));
 		lblDay4Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDay4Temperature = new GridBagConstraints();
 		gbc_lblDay4Temperature.gridwidth = 3;
@@ -387,7 +412,7 @@ public class WeatherPanel extends JPanel {
 		day4.add(lblDay4Temperature, gbc_lblDay4Temperature);
 		
 		JLabel lblDay4MinTemp = new JLabel("Min. Temp.");
-		lblDay4MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay4MinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblDay4MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay4MinTemp = new GridBagConstraints();
 		gbc_lblDay4MinTemp.anchor = GridBagConstraints.WEST;
@@ -396,7 +421,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay4MinTemp.gridy = 2;
 		day4.add(lblDay4MinTemp, gbc_lblDay4MinTemp);
 		
-		lblDay4MinTempValue = new JLabel("3 \u00BAC");
+		lblDay4MinTempValue = new JLabel();
 		lblDay4MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay4MinTempValue = new GridBagConstraints();
 		gbc_lblDay4MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -405,7 +430,7 @@ public class WeatherPanel extends JPanel {
 		day4.add(lblDay4MinTempValue, gbc_lblDay4MinTempValue);
 		
 		JLabel lblDay4MaxTemp = new JLabel("Max. Temp.");
-		lblDay4MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay4MaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblDay4MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay4MaxTemp = new GridBagConstraints();
 		gbc_lblDay4MaxTemp.anchor = GridBagConstraints.WEST;
@@ -414,7 +439,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay4MaxTemp.gridy = 3;
 		day4.add(lblDay4MaxTemp, gbc_lblDay4MaxTemp);
 		
-		lblDay4MaxTempValue = new JLabel("11 \u00BAC");
+		lblDay4MaxTempValue = new JLabel();
 		lblDay4MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay4MaxTempValue = new GridBagConstraints();
 		gbc_lblDay4MaxTempValue.insets = new Insets(0, 5, 5, 15);
@@ -423,7 +448,7 @@ public class WeatherPanel extends JPanel {
 		day4.add(lblDay4MaxTempValue, gbc_lblDay4MaxTempValue);
 		
 		JLabel lblDay4Humidity = new JLabel(" Humidity:");
-		lblDay4Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay4Humidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblDay4Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay4Humidity = new GridBagConstraints();
 		gbc_lblDay4Humidity.anchor = GridBagConstraints.WEST;
@@ -432,7 +457,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay4Humidity.gridy = 4;
 		day4.add(lblDay4Humidity, gbc_lblDay4Humidity);
 		
-		lblDay4HumidityValue = new JLabel("78.0 %");
+		lblDay4HumidityValue = new JLabel();
 		lblDay4HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay4HumidityValue_1 = new GridBagConstraints();
 		gbc_lblDay4HumidityValue_1.insets = new Insets(0, 5, 5, 15);
@@ -460,7 +485,7 @@ public class WeatherPanel extends JPanel {
 		gbl_day5.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		day5.setLayout(gbl_day5);
 		
-		lblDayWeek5 = new JLabel("Lunes");
+		lblDayWeek5 = new JLabel();
 		lblDayWeek5.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDayWeek5 = new GridBagConstraints();
 		gbc_lblDayWeek5.gridwidth = 3;
@@ -470,8 +495,8 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDayWeek5.gridy = 0;
 		day5.add(lblDayWeek5, gbc_lblDayWeek5);
 		
-		lblDay5Temperature = new JLabel("14 \u00BAC");
-		lblDay5Temperature.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\b_3_very_cloudy.png"));
+		lblDay5Temperature = new JLabel();
+//		lblDay5Temperature.setIcon(new ImageIcon("icons/b_3_very_cloudy.png"));
 		lblDay5Temperature.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblDay5Temperature = new GridBagConstraints();
 		gbc_lblDay5Temperature.gridwidth = 3;
@@ -481,7 +506,7 @@ public class WeatherPanel extends JPanel {
 		day5.add(lblDay5Temperature, gbc_lblDay5Temperature);
 		
 		JLabel lblDay5MinTemp = new JLabel("Min. Temp.");
-		lblDay5MinTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_1_low_temperature.png"));
+		lblDay5MinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblDay5MinTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay5MinTemp = new GridBagConstraints();
 		gbc_lblDay5MinTemp.anchor = GridBagConstraints.WEST;
@@ -490,7 +515,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay5MinTemp.gridy = 2;
 		day5.add(lblDay5MinTemp, gbc_lblDay5MinTemp);
 		
-		lblDay5MinTempValue = new JLabel("9 \u00BAC");
+		lblDay5MinTempValue = new JLabel();
 		lblDay5MinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay5MinTempValue = new GridBagConstraints();
 		gbc_lblDay5MinTempValue.insets = new Insets(0, 5, 5, 15);
@@ -499,7 +524,7 @@ public class WeatherPanel extends JPanel {
 		day5.add(lblDay5MinTempValue, gbc_lblDay5MinTempValue);
 		
 		JLabel lblDay5MaxTemp = new JLabel("Max. Temp.");
-		lblDay5MaxTemp.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\e_3_high_temp.png"));
+		lblDay5MaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblDay5MaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay5MaxTemp = new GridBagConstraints();
 		gbc_lblDay5MaxTemp.anchor = GridBagConstraints.WEST;
@@ -508,7 +533,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay5MaxTemp.gridy = 3;
 		day5.add(lblDay5MaxTemp, gbc_lblDay5MaxTemp);
 		
-		lblDay5MaxTempValue = new JLabel("15 \u00BAC");
+		lblDay5MaxTempValue = new JLabel();
 		lblDay5MaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay5MaxTempValue = new GridBagConstraints();
 		gbc_lblDay5MaxTempValue.insets = new Insets(0, 5, 5, 15);
@@ -517,7 +542,7 @@ public class WeatherPanel extends JPanel {
 		day5.add(lblDay5MaxTempValue, gbc_lblDay5MaxTempValue);
 		
 		JLabel lblDay5Humidity = new JLabel(" Humidity:");
-		lblDay5Humidity.setIcon(new ImageIcon("C:\\Users\\gorka\\OneDrive\\Documentos\\Repostiorios\\WedderZ\\icons\\humidity.png"));
+		lblDay5Humidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblDay5Humidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblDay5Humidity = new GridBagConstraints();
 		gbc_lblDay5Humidity.anchor = GridBagConstraints.WEST;
@@ -526,7 +551,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblDay5Humidity.gridy = 4;
 		day5.add(lblDay5Humidity, gbc_lblDay5Humidity);
 		
-		lblDay5HumidityValue = new JLabel("54.0 %");
+		lblDay5HumidityValue = new JLabel();
 		lblDay5HumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDay5HumidityValue = new GridBagConstraints();
 		gbc_lblDay5HumidityValue.insets = new Insets(0, 5, 5, 15);
@@ -553,7 +578,7 @@ public class WeatherPanel extends JPanel {
 		gbl_currentWeatherPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		currentWeatherPanel.setLayout(gbl_currentWeatherPanel);
 		
-		lblLocation = new JLabel("Madrid, ES");
+		lblLocation = new JLabel();
 		lblLocation.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblLocation = new GridBagConstraints();
 		gbc_lblLocation.gridwidth = 2;
@@ -562,9 +587,9 @@ public class WeatherPanel extends JPanel {
 		gbc_lblLocation.gridy = 0;
 		currentWeatherPanel.add(lblLocation, gbc_lblLocation);
 		
-		lblCurTemperature = new JLabel("26 \u00BAC");
+		lblCurTemperature = new JLabel();
 		lblCurTemperature.setFont(new Font("Tahoma", Font.PLAIN, 69));
-		lblCurTemperature.setIcon(new ImageIcon("icons\\a_3_very_sunny.png"));
+//		lblCurTemperature.setIcon(new ImageIcon("icons/a_3_very_sunny.png"));
 		GridBagConstraints gbc_lblCurTemperature = new GridBagConstraints();
 		gbc_lblCurTemperature.gridwidth = 2;
 		gbc_lblCurTemperature.insets = new Insets(5, 10, 5, 10);
@@ -573,7 +598,7 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblCurTemperature, gbc_lblCurTemperature);
 		
 		JLabel lblCurMinTemp = new JLabel("Min. Temp.");
-		lblCurMinTemp.setIcon(new ImageIcon("icons\\e_1_low_temperature.png"));
+		lblCurMinTemp.setIcon(new ImageIcon("icons/e_1_low_temperature.png"));
 		lblCurMinTemp.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblCurMinTemp = new GridBagConstraints();
 		gbc_lblCurMinTemp.insets = new Insets(0, 10, 5, 10);
@@ -582,7 +607,7 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblCurMinTemp, gbc_lblCurMinTemp);
 		
 		JLabel lblCurMaxTemp = new JLabel("Max. Temp.");
-		lblCurMaxTemp.setIcon(new ImageIcon("icons\\e_3_high_temp.png"));
+		lblCurMaxTemp.setIcon(new ImageIcon("icons/e_3_high_temp.png"));
 		lblCurMaxTemp.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblCurMaxTemp = new GridBagConstraints();
 		gbc_lblCurMaxTemp.insets = new Insets(0, 0, 5, 20);
@@ -590,7 +615,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblCurMaxTemp.gridy = 2;
 		currentWeatherPanel.add(lblCurMaxTemp, gbc_lblCurMaxTemp);
 		
-		lblCurMinTempValue = new JLabel("19 \u00BAC");
+		lblCurMinTempValue = new JLabel();
 		lblCurMinTempValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblCurMinTempValue = new GridBagConstraints();
 		gbc_lblCurMinTempValue.insets = new Insets(0, 0, 20, 5);
@@ -598,7 +623,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblCurMinTempValue.gridy = 3;
 		currentWeatherPanel.add(lblCurMinTempValue, gbc_lblCurMinTempValue);
 		
-		lblCurMaxTempValue = new JLabel("31 \u00BAC");
+		lblCurMaxTempValue = new JLabel();
 		lblCurMaxTempValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblCurMaxTempValue = new GridBagConstraints();
 		gbc_lblCurMaxTempValue.insets = new Insets(0, 0, 20, 0);
@@ -607,7 +632,7 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblCurMaxTempValue, gbc_lblCurMaxTempValue);
 		
 		JLabel lblCurPressure = new JLabel("Pressure:");
-		lblCurPressure.setIcon(new ImageIcon("icons\\pressure.png"));
+		lblCurPressure.setIcon(new ImageIcon("icons/pressure.png"));
 		lblCurPressure.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblCurPressure = new GridBagConstraints();
 		gbc_lblCurPressure.anchor = GridBagConstraints.WEST;
@@ -616,7 +641,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblCurPressure.gridy = 4;
 		currentWeatherPanel.add(lblCurPressure, gbc_lblCurPressure);
 		
-		lblCurPressureValue = new JLabel("1018.3 mbar");
+		lblCurPressureValue = new JLabel();
 		lblCurPressureValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblCurPressureValue = new GridBagConstraints();
 		gbc_lblCurPressureValue.insets = new Insets(0, 0, 5, 0);
@@ -626,7 +651,7 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblCurPressureValue, gbc_lblCurPressureValue);
 		
 		JLabel lblCurHumidity = new JLabel(" Humidity:");
-		lblCurHumidity.setIcon(new ImageIcon("icons\\humidity.png"));
+		lblCurHumidity.setIcon(new ImageIcon("icons/humidity.png"));
 		lblCurHumidity.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblCurHumidity = new GridBagConstraints();
 		gbc_lblCurHumidity.anchor = GridBagConstraints.WEST;
@@ -635,7 +660,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblCurHumidity.gridy = 5;
 		currentWeatherPanel.add(lblCurHumidity, gbc_lblCurHumidity);
 		
-		lblCurHumidityValue = new JLabel("66.0 %");
+		lblCurHumidityValue = new JLabel();
 		lblCurHumidityValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblCurHumidityValue = new GridBagConstraints();
 		gbc_lblCurHumidityValue.insets = new Insets(0, 0, 5, 0);
@@ -645,7 +670,7 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblCurHumidityValue, gbc_lblCurHumidityValue);
 		
 		JLabel lblCurWind = new JLabel(" Wind Vel.:");
-		lblCurWind.setIcon(new ImageIcon("icons\\wind.png"));
+		lblCurWind.setIcon(new ImageIcon("icons/wind.png"));
 		lblCurWind.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblCurWind = new GridBagConstraints();
 		gbc_lblCurWind.anchor = GridBagConstraints.WEST;
@@ -654,7 +679,7 @@ public class WeatherPanel extends JPanel {
 		gbc_lblCurWind.gridy = 6;
 		currentWeatherPanel.add(lblCurWind, gbc_lblCurWind);
 		
-		lblWindValue = new JLabel("3.47 m/s");
+		lblWindValue = new JLabel();
 		lblWindValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblMs = new GridBagConstraints();
 		gbc_lblMs.insets = new Insets(0, 0, 10, 0);
@@ -664,15 +689,15 @@ public class WeatherPanel extends JPanel {
 		currentWeatherPanel.add(lblWindValue, gbc_lblMs);
 	}
 	
-	public void setCurrentWeatherValues(String location, double wetherType, double temp, double minTemp, double maxTemp, double pressure, double windVel, double humidity) {
-		lblLocation.setText(location);
-		lblCurTemperature.setText(String.valueOf(temp) + " \u00BAC");
-		lblCurMinTempValue.setText(String.valueOf(minTemp) + " \u00BAC");
-		lblCurMaxTempValue.setText(String.valueOf(maxTemp) + " \u00BAC");
+	public void setCurrentWeatherValues(String location, String countryCode, double weatherType, double temp, double minTemp, double maxTemp, double pressure, double humidity, double windVel) {
+		lblLocation.setText(location + ", " + countryCode);
+		lblCurTemperature.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblCurMinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblCurMaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
 		lblCurPressureValue.setText(String.valueOf(pressure) + " mbar");
 		lblCurHumidityValue.setText(String.valueOf(humidity) + " %");
 		lblWindValue.setText(String.valueOf(windVel) + " m/s");
-		setWeatherType(lblCurTemperature, wetherType);
+		setWeatherType(lblCurTemperature, weatherType);
 	}
 	
 	public void setWeatherType(JLabel label, double wetherType) {
@@ -708,13 +733,49 @@ public class WeatherPanel extends JPanel {
 		label.setIcon(new ImageIcon(iconPath));
 	}
 	
-	public void setDay1Values(String dayOfWeek, double temp, double minTemp, double maxTemp, double humidity) {
+	public void setPast1DaysValues(String dayOfWeek, double weatherType, double temp, double minTemp, double maxTemp, double humidity) {
 		lblDayWeek1.setText(dayOfWeek);
-		lblDay1Temperature.setText(String.valueOf(temp) + " \u00BAC");
-		lblDay1MinTempValue.setText(String.valueOf(minTemp) + " \u00BAC");
-		lblDay1MaxTempValue.setText(String.valueOf(maxTemp) + " \u00BAC");
+		lblDay1Temperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
+		lblDay1MinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblDay1MaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
 		lblDay1HumidityValue.setText(String.valueOf(humidity) + " %");
+		setWeatherType(lblDay1Temperature, weatherType);
 	}
 	
+	public void setPast2DaysValues(String dayOfWeek, double weatherType, double temp, double minTemp, double maxTemp, double humidity) {
+		lblDayWeek2.setText(dayOfWeek);
+		lblDay2Temperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
+		lblDay2MinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblDay2MaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblDay2HumidityValue.setText(String.valueOf(humidity) + " %");
+		setWeatherType(lblDay2Temperature, weatherType);
+	}
+	
+	public void setPast3DaysValues(String dayOfWeek, double weatherType, double temp, double minTemp, double maxTemp, double humidity) {
+		lblDayWeek3.setText(dayOfWeek);
+		lblDay3Temperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
+		lblDay3MinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblDay3MaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblDay3HumidityValue.setText(String.valueOf(humidity) + " %");
+		setWeatherType(lblDay3Temperature, weatherType);
+	}
+	
+	public void setPast4DaysValues(String dayOfWeek, double weatherType, double temp, double minTemp, double maxTemp, double humidity) {
+		lblDayWeek4.setText(dayOfWeek);
+		lblDay4Temperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
+		lblDay4MinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblDay4MaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblDay4HumidityValue.setText(String.valueOf(humidity) + " %");
+		setWeatherType(lblDay4Temperature, weatherType);
+	}
+	
+	public void setPast5DaysValues(String dayOfWeek, double weatherType, double temp, double minTemp, double maxTemp, double humidity) {
+		lblDayWeek5.setText(dayOfWeek);
+		lblDay5Temperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
+		lblDay5MinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
+		lblDay5MaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblDay5HumidityValue.setText(String.valueOf(humidity) + " %");
+		setWeatherType(lblDay5Temperature, weatherType);
+	}
 	
 }
