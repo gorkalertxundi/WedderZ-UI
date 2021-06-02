@@ -16,7 +16,7 @@ import edu.wedderz.core.model.User;
 
 public class UserServiceImpl implements UserService {
 	
-	CountryService countryService = new CountryServiceImpl();
+	private CountryService countryService = new CountryServiceImpl();
 	
 	@Override
 	public User getUserById(int userId) {		

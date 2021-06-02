@@ -8,7 +8,7 @@ import edu.wedderz.core.model.ProcessedData;
 
 public interface ProcessedDataService {
 
-	public Set<ProcessedData> getProcessedDataLatest(Locality location);
+	public Set<ProcessedData> getProcessedDataLatest(Locality location, int days);
 	
 	public Set<ProcessedData> getProcessedDataByDate(Locality location, Timestamp date);
 	

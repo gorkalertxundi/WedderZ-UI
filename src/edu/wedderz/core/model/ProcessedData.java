@@ -1,19 +1,19 @@
 package edu.wedderz.core.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class ProcessedData {
 
 	Locality locality;
 	DataType dataType;
-	Timestamp time;
+	Date date;
 	double value;
 	
-	public ProcessedData(Locality locality, DataType dataType, Timestamp time, double value) {
+	public ProcessedData(Locality locality, DataType dataType, Date date, double value) {
 		super();
 		this.locality = locality;
 		this.dataType = dataType;
-		this.time = time;
+		this.date = date;
 		this.value = value;
 	}
 
@@ -25,8 +25,8 @@ public class ProcessedData {
 		return dataType;
 	}
 
-	public Timestamp getTime() {
-		return time;
+	public Date getDate() {
+		return date;
 	}
 
 	public double getValue() {
