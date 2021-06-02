@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import edu.wedderz.core.app.view.BusquedaLocalidades;
 import edu.wedderz.core.app.view.LocationSelectionPanel;
 import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.WeatherPanel;
+import edu.wedderz.core.model.DataType;
 import edu.wedderz.core.model.Locality;
 import edu.wedderz.core.model.ProcessedData;
 
@@ -25,6 +27,8 @@ public class SearcherController implements ActionListener{
 	WeatherPanel weatherPanel;
 	UIFrame uiFrame;
 	LocationSelectionPanel locationSelectionPanel;
+	
+	Set<Locality> localities;
 	
 	public SearcherController(BusquedaLocalidades view, WeatherPanel weatherPanel, SearcherModel model, 
 			LocationSelectionPanel locationSelectionPanel, UIFrame uiFrame) {
@@ -45,8 +49,8 @@ public class SearcherController implements ActionListener{
 		weatherPanel.setPast5DaysValues(getDayString(5), 5, -3.6, 15, 22, 43);
 		
 	}
-	private void setValuesWeather(ProcessedData processedData) {
-		weatherPanel.setCurrentWeatherValues(processedData.getLocality().getName(), "ES", 5, 10, 8, 15, 1018.3, 66, 3.47);
+	private void setValuesWeather(Locality localityToShow) {
+		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), localityToShow.getCountry().getCountryId(), 5, 10, 8, 15, 1018.3, 66, 3.47);
 		weatherPanel.setPast1DaysValues(getDayString(1), 1, 19.4, 15, 22, 43);
 		weatherPanel.setPast2DaysValues(getDayString(2), 2, 13.8, 15, 22, 43);
 		weatherPanel.setPast3DaysValues(getDayString(3), 3, 9.5, 15, 22, 43);
@@ -69,7 +73,7 @@ public class SearcherController implements ActionListener{
 			//buscar localidad en la datu basea
 			//y luego coger los datos
 			
-			Set<Locality> localities = model.getLocality(textString);
+			localities = model.getLocality(textString);
 			if(textString.equals("")) {
 				viewSearcher.changePanelToNotFound();
 			}
@@ -81,12 +85,25 @@ public class SearcherController implements ActionListener{
 		
 		}
 		else if(e.getActionCommand() == "Selection") {
+			boolean salir = true;
+			int i = 0;
+			Locality localityToShow = null;
 			JComboBox<String> comboBox = (JComboBox<String>) locationSelectionPanel.getComboBox();
 			String localidadNombre = (String) comboBox.getSelectedItem();
+			Object[] localidadesArrayList = localities.toArray();
 
-			ProcessedData processedData = model.getProcessedData(new Locality(1, localidadNombre, 5.5, 5.5));
+			while(salir) { 
+				if(((Locality)localidadesArrayList[i]).getName().equals(localidadNombre)) {
+					salir = false;
+					localityToShow = ((Locality)localidadesArrayList[i]);
+				}
+				else {
+					i++;
+				}
+			}
+			//ProcessedData processedData = new ProcessedData(localityToShow, new DataType(1, "Temperatura"), 20, value)
 			viewSearcher.changePanelToData();
-			setValuesWeather(processedData);
+			setValuesWeather(localityToShow);
 			uiFrame.refresh();
 
 		}
