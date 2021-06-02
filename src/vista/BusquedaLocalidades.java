@@ -21,14 +21,22 @@ public class BusquedaLocalidades extends JPanel {
 	private JTextField textField;
 	SearcherModel searcherModel = new SearcherModel();
 	WeatherPanel weatherPanel;
+	LocationSelectionPanel locationSelectionPanel;
 	SearcherController searcherController;
+	JPanel currentJPanel;
+	LocalityNotFound localityNotFound;
 
 	
-	public BusquedaLocalidades() {
+	public BusquedaLocalidades(UIFrame uiFrame) {
 		setBackground(Color.WHITE);
 		
 		weatherPanel = new WeatherPanel();
-		searcherController = new SearcherController(this, weatherPanel, searcherModel);
+		localityNotFound = new LocalityNotFound();
+		locationSelectionPanel = new LocationSelectionPanel();
+		searcherController = new SearcherController(this, weatherPanel, searcherModel, locationSelectionPanel, uiFrame);
+		
+		searcherController.setValuesTEMPORAL();
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{43, 116, 73, 81, 0};
 		gridBagLayout.rowHeights = new int[]{25, 0, 0};
@@ -67,17 +75,54 @@ public class BusquedaLocalidades extends JPanel {
 		
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 4;
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.insets = new Insets(0, 0, 0, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
-		add(weatherPanel, gbc_panel);
+		currentJPanel = weatherPanel;
+		add(currentJPanel, gbc_panel);
 		
 		
 	}
 
 	public String getTextField() {
 		return textField.getText();
+	}
+
+	public void changePanelToSelection() {
+		this.remove(currentJPanel);
+		currentJPanel = locationSelectionPanel;
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 4;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		this.add(currentJPanel, gbc_panel);
+    }
+
+	public void changePanelToData() {
+		this.remove(currentJPanel);
+		currentJPanel = weatherPanel;
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 4;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		this.add(currentJPanel, gbc_panel);
+	}
+
+	public void changePanelToNotFound() {
+		this.remove(currentJPanel);
+		currentJPanel = localityNotFound;
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 4;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		this.add(currentJPanel, gbc_panel);
 	}
 
 	

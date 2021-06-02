@@ -6,11 +6,11 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import vista.Frame;
+import vista.UIFrame;
 
 public class MiAction extends AbstractAction{
 
-	public MiAction(String text, ImageIcon imageIcon, String descrip, int nemonic, Frame frame) {
+	public MiAction(String text, ImageIcon imageIcon, String descrip, int nemonic, UIFrame frame) {
 		super(text, imageIcon);
 		this.putValue(Action.SHORT_DESCRIPTION, descrip);
 		this.putValue(Action.MNEMONIC_KEY, nemonic);
