@@ -24,8 +24,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 
 	@Override
 	public Set<ProcessedData> getProcessedDataLatest(Locality locality, int days) {
-		if(days <= 0) return null;
 		Set<ProcessedData> data = new HashSet<>();
+		if(days <= 0) return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
 				+ "	FROM wedderz.processed_data\r\n"
 				+ "	WHERE locality_id = ?\r\n"
@@ -61,7 +61,7 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 		}
 		
 		
-		return null;
+		return data;
 	}
 
 	@Override
