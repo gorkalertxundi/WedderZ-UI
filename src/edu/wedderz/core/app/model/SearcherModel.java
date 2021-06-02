@@ -22,7 +22,7 @@ public class SearcherModel {
 	}
 
 	public Set<Locality> getLocality(String textString) {
-		System.out.println(localityService.getLocalitiesByName(textString).iterator().next().getName());
+		localityService.getLocalitiesByName(textString);
 		Locality locality1 = new Locality(1, "Vitoria", 1001, 100, new Country("ES", "España"));
 		Locality locality2 = new Locality(1, "Victoria", 1002, 100, new Country("ES", "España"));
 		Locality locality3 = new Locality(1, "Vista Alegre", 1003, 100, new Country("ES", "España"));
@@ -31,13 +31,12 @@ public class SearcherModel {
 		localities.add(locality2);
 		localities.add(locality3);
 
-		return localities;
+		return 	localityService.getLocalitiesByName(textString);
+
 	}
 
-	public ProcessedData getProcessedData(Locality localidad) {
-		ProcessedData processedData = null;
-//		ProcessedData processedData = new ProcessedData(localidad, 25);
-		return processedData;
+	public Set<ProcessedData> getProcessedData(Locality localidad) {
+		return 	processedDataService.getProcessedDataLatest(localidad);
 	}
 
 	/*public PastData[] getPastData(Locality localidad) {

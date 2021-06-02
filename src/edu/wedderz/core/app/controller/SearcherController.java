@@ -50,7 +50,7 @@ public class SearcherController implements ActionListener{
 		
 	}
 	private void setValuesWeather(Locality localityToShow) {
-		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), localityToShow.getCountry().getCountryId(), 5, 10, 8, 15, 1018.3, 66, 3.47);
+		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), localityToShow.getCountry().getCountryId().toUpperCase(), 5, 10, 8, 15, 1018.3, 66, 3.47);
 		weatherPanel.setPast1DaysValues(getDayString(1), 1, 19.4, 15, 22, 43);
 		weatherPanel.setPast2DaysValues(getDayString(2), 2, 13.8, 15, 22, 43);
 		weatherPanel.setPast3DaysValues(getDayString(3), 3, 9.5, 15, 22, 43);
@@ -70,17 +70,20 @@ public class SearcherController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "searchButton") {
 			String textString = viewSearcher.getTextField();
-			//buscar localidad en la datu basea
-			//y luego coger los datos
-			
-			localities = model.getLocality(textString);
 			if(textString.equals("")) {
 				viewSearcher.changePanelToNotFound();
 			}
 			else {
-				locationSelectionPanel.putLocalities(localities);
-				viewSearcher.changePanelToSelection();
+				localities = model.getLocality(textString);
+				if(localities == null) {
+					viewSearcher.changePanelToNotFound();
+				}
+				else {
+					locationSelectionPanel.putLocalities(localities);
+					viewSearcher.changePanelToSelection();
+				}
 			}
+			
 			uiFrame.refresh();
 		
 		}
@@ -101,7 +104,7 @@ public class SearcherController implements ActionListener{
 					i++;
 				}
 			}
-			//ProcessedData processedData = new ProcessedData(localityToShow, new DataType(1, "Temperatura"), 20, value)
+			Set<ProcessedData> processedData = model.getProcessedData(localityToShow);
 			viewSearcher.changePanelToData();
 			setValuesWeather(localityToShow);
 			uiFrame.refresh();
