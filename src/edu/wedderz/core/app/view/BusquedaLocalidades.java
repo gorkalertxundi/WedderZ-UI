@@ -62,8 +62,8 @@ public class BusquedaLocalidades extends JPanel {
 		add(btnNewButton, gbc_btnNewButton);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addItem("Locations");
-		comboBox.addItem("Countries");
+		comboBox.addItem("Locality name");
+		comboBox.addItem("Country");
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(10, 5, 10, 5);
 		gbc_comboBox.anchor = GridBagConstraints.WEST;
