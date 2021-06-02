@@ -2,7 +2,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Console;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,8 +9,8 @@ import java.util.Date;
 
 import javax.swing.JComboBox;
 
-import edu.wedderz.dataaccess.model.Locality;
-import edu.wedderz.dataaccess.model.ProcessedData;
+import modelo.Locality;
+import modelo.ProcessedData;
 import modelo.SearcherModel;
 import vista.BusquedaLocalidades;
 import vista.LocationSelectionPanel;

@@ -1,17 +1,17 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import controlador.SearcherController;
-
-import java.awt.GridBagLayout;
-import javax.swing.JComboBox;
-import java.awt.GridBagConstraints;
-import java.awt.Color;
-import java.awt.Insets;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import edu.wedderz.dataaccess.model.Locality;
+import modelo.Locality;
 
 
 public class LocationSelectionPanel extends JPanel{
