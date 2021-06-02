@@ -1,4 +1,4 @@
-package vista;
+package edu.wedderz.core.app.view;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
-import controlador.MiAction;
+import edu.wedderz.core.app.controller.MiAction;
 
 public class UIFrame extends JFrame {
 	

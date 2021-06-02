@@ -1,17 +1,18 @@
-package vista;
+package edu.wedderz.core.app.view;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import controlador.SearcherController;
-import modelo.Locality;
+import edu.wedderz.core.app.controller.SearcherController;
+import edu.wedderz.core.model.Locality;
 
 
 public class LocationSelectionPanel extends JPanel{
@@ -45,12 +46,10 @@ public class LocationSelectionPanel extends JPanel{
 		add(btnNewButton, gbc_btnNewButton);
 	}
 	
-	public void putLocalities(ArrayList<Locality> localities) {
+	public void putLocalities(Set<Locality> localities) {
 		comboBox.removeAllItems();
-		for (int i = 0; i < localities.size(); i++) {
-			Locality locality = localities.get(i);
-			comboBox.addItem(locality.getName());
-		}
+		Iterator<Locality> i = localities.iterator();
+		while(i.hasNext()) comboBox.addItem(i.next().getName());
 		comboBox.setSelectedIndex(-1);
 		
 	}

@@ -1,4 +1,4 @@
-package vista;
+package edu.wedderz.core.app.view;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;

@@ -1,4 +1,4 @@
-package controlador;
+package edu.wedderz.core.app.controller;
 
 import java.awt.event.ActionEvent;
 
@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import vista.UIFrame;
+import edu.wedderz.core.app.view.UIFrame;
 
 public class MiAction extends AbstractAction{
 

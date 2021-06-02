@@ -1,19 +1,17 @@
-package vista;
+package edu.wedderz.core.app.view;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import controlador.SearcherController;
-import modelo.Locality;
-import modelo.ProcessedData;
-import modelo.SearcherModel;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import edu.wedderz.core.app.controller.SearcherController;
+import edu.wedderz.core.app.model.SearcherModel;
 
 public class BusquedaLocalidades extends JPanel {
 	private static final long serialVersionUID = 1L;

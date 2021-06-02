@@ -1,4 +1,4 @@
-package vista;
+package edu.wedderz.core.app.view;
 
 import java.awt.Color;
 import java.awt.Font;

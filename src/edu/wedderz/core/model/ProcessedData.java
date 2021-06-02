@@ -1,17 +1,19 @@
-package modelo;
+package edu.wedderz.core.model;
+
+import java.sql.Timestamp;
 
 public class ProcessedData {
-	
+
 	Locality locality;
-	//DataType dataType;
-	//Timestamp time;
+	DataType dataType;
+	Timestamp time;
 	double value;
 	
-	public ProcessedData(Locality locality/*, DataType dataType, Timestamp time*/, double value) {
+	public ProcessedData(Locality locality, DataType dataType, Timestamp time, double value) {
 		super();
 		this.locality = locality;
-		/*this.dataType = dataType;
-		this.time = time;*/
+		this.dataType = dataType;
+		this.time = time;
 		this.value = value;
 	}
 
@@ -19,16 +21,19 @@ public class ProcessedData {
 		return locality;
 	}
 
-	/*public DataType getDataType() {
+	public DataType getDataType() {
 		return dataType;
 	}
 
 	public Timestamp getTime() {
 		return time;
-	}*/
+	}
 
 	public double getValue() {
 		return value;
 	}
-
+	
+	
+	
+	
 }

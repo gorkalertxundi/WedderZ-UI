@@ -1,4 +1,4 @@
-package modelo;
+package edu.wedderz.core.model;
 
 public class Locality {
 
@@ -6,15 +6,15 @@ public class Locality {
 	String name;
 	double latitude;
 	double longitude;
-	//Country country;
+	Country country;
 	
-	public Locality(int localityId, String name, double latitude, double longitude/*, Country country*/) {
+	public Locality(int localityId, String name, double latitude, double longitude, Country country) {
 		super();
 		this.localityId = localityId;
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		//this.country = country;
+		this.country = country;
 	}
 
 	public int getLocalityId() {
@@ -33,9 +33,9 @@ public class Locality {
 		return longitude;
 	}
 
-	/*public Country getCountry() {
+	public Country getCountry() {
 		return country;
-	}*/
+	}
 	
 	
 	

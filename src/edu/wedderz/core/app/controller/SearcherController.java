@@ -1,21 +1,21 @@
-package controlador;
+package edu.wedderz.core.app.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 import javax.swing.JComboBox;
 
-import modelo.Locality;
-import modelo.ProcessedData;
-import modelo.SearcherModel;
-import vista.BusquedaLocalidades;
-import vista.LocationSelectionPanel;
-import vista.UIFrame;
-import vista.WeatherPanel;
+import edu.wedderz.core.app.model.SearcherModel;
+import edu.wedderz.core.app.view.BusquedaLocalidades;
+import edu.wedderz.core.app.view.LocationSelectionPanel;
+import edu.wedderz.core.app.view.UIFrame;
+import edu.wedderz.core.app.view.WeatherPanel;
+import edu.wedderz.core.model.Locality;
+import edu.wedderz.core.model.ProcessedData;
 
 public class SearcherController implements ActionListener{
 	
@@ -69,7 +69,7 @@ public class SearcherController implements ActionListener{
 			//buscar localidad en la datu basea
 			//y luego coger los datos
 			
-			ArrayList<Locality> localities = model.getLocality(textString);
+			Set<Locality> localities = model.getLocality(textString);
 			if(textString.equals("")) {
 				viewSearcher.changePanelToNotFound();
 			}
