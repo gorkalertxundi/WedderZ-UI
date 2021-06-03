@@ -40,8 +40,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 			statement.execute();
 			ResultSet rs = statement.getResultSet();
 			Set<DataType> types = new HashSet<>();
-			DataType dataType = null;
 			while(rs.next()) {
+				DataType dataType = null;
 				int dataTypeId = rs.getInt("data_type_id");
 				Iterator<DataType> it = types.iterator();
 				while(it.hasNext()){
