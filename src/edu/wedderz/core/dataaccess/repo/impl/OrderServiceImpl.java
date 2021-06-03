@@ -171,6 +171,8 @@ public class OrderServiceImpl implements OrderService {
 	public Order makeOrder(User user, int ammount, String address) {
 		Order order = null;
 		if(ammount < 0) return order;
+		String stockQuery = "SELECT stock FROM wedderz.station_specs";
+		
 		String priceQuery = "SELECT price\r\n"
 				+ "	FROM wedderz.station_price\r\n"
 				+ "	ORDER BY date DESC\r\n"
@@ -186,9 +188,16 @@ public class OrderServiceImpl implements OrderService {
 		
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			con.setAutoCommit(false);
-			
+			PreparedStatement statement = con.prepareStatement(stockQuery);
+			statement.execute();	
+			ResultSet stockRs = statement.getResultSet();
+			stockRs.next();
+			if(stockRs.getInt("stock") < ammount) {
+				statement.close();
+				return null;
+			}
 			//Get price
-			PreparedStatement statement = con.prepareStatement(priceQuery);
+			statement = con.prepareStatement(priceQuery);
 			statement.execute();
 			ResultSet priceRs = statement.getResultSet();
 			priceRs.next();
@@ -235,6 +244,25 @@ public class OrderServiceImpl implements OrderService {
 
 		
 		return order;
+	}
+
+	@Override
+	public Integer getStationStock() {
+		Integer stock = null;
+		String query = "SELECT stock FROM wedderz.station_specs;";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			stock = rs.getInt("stock");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return stock;
 	}
 
 }
