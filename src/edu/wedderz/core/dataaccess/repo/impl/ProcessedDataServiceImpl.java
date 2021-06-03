@@ -29,7 +29,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
 				+ "	FROM wedderz.processed_data\r\n"
 				+ "	WHERE locality_id = ?\r\n"
-				+ "	AND data_date BETWEEN ? AND NOW();";
+				+ "	AND data_date BETWEEN ? AND NOW()"
+				+ " ORDER BY data_date DESC;";
 		
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
