@@ -9,7 +9,9 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import edu.wedderz.core.dataaccess.PostgreSQLCon;
 import edu.wedderz.core.dataaccess.repo.serv.DataTypeService;
@@ -23,8 +25,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 	private DataTypeService dataTypeService = new DataTypeServiceImpl();
 
 	@Override
-	public Set<ProcessedData> getProcessedDataLatest(Locality locality, int days) {
-		Set<ProcessedData> data = new HashSet<>();
+	public TreeMap<Date, Set<ProcessedData>> getProcessedDataLatest(Locality locality, int days) {
+		TreeMap<Date, Set<ProcessedData>> data = new TreeMap<>();
 		if(days <= 0) return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
 				+ "	FROM wedderz.processed_data\r\n"
@@ -54,20 +56,25 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 				}
 				Date date = rs.getDate("data_date");
 				double value = rs.getDouble("data_value");
-				data.add(new ProcessedData(locality, dataType, date, value));
+				Set<ProcessedData> set;
+				if(!data.containsKey(date)) {
+					set = new HashSet<>();
+					data.put(date, set);
+				}
+				else set = data.get(date);
+				set.add(new ProcessedData(locality, dataType, date, value));
 			};
 					
 		} catch (SQLException e) {
 			e.printStackTrace();			
 		}
 		
-		
 		return data;
 	}
 
 	@Override
-	public Set<ProcessedData> getProcessedDataByDate(Locality locality, Timestamp date) {
-		Set<ProcessedData> data = new HashSet<>();
+	public TreeMap<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Timestamp date) {
+		TreeMap<Date, Set<ProcessedData>> data = new TreeMap<>();
 		return data;
 	}
 
