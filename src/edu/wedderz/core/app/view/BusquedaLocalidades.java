@@ -23,6 +23,7 @@ public class BusquedaLocalidades extends JPanel {
 	SearcherController searcherController;
 	JPanel currentJPanel;
 	LocalityNotFound localityNotFound;
+	JComboBox<String> comboBox;
 
 	
 	public BusquedaLocalidades(UIFrame uiFrame) {
@@ -61,7 +62,7 @@ public class BusquedaLocalidades extends JPanel {
 		gbc_btnNewButton.gridy = 0;
 		add(btnNewButton, gbc_btnNewButton);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		comboBox.addItem("Locality name");
 		comboBox.addItem("Country");
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -121,6 +122,10 @@ public class BusquedaLocalidades extends JPanel {
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
 		this.add(currentJPanel, gbc_panel);
+	}
+
+	public String getFilter() {
+		return comboBox.getSelectedItem().toString();
 	}
 
 	

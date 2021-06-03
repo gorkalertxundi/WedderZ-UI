@@ -219,6 +219,25 @@ public class SearcherController implements ActionListener{
 				viento.getValue());
 	}
 	
+	private void setValuesWeather(Map<Date, Set<ProcessedData>> processedDatas, Locality localityToShow) {
+		NavigableSet<Date> navigableSet = ((TreeMap) processedDatas).descendingKeySet();
+		Iterator<Date> iterator = navigableSet.descendingIterator();
+		
+		Set<ProcessedData> processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherDay5(processedDataIterator);
+		processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherDay4(processedDataIterator);
+		processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherDay3(processedDataIterator);
+		processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherDay2(processedDataIterator);
+		processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherDay1(processedDataIterator);
+		processedDataIterator = processedDatas.get(iterator.next());
+		setValuesWeatherToday(localityToShow, processedDataIterator);
+				
+	}
+	
 	private String getDayString(int n) { 
 		Date date = new Date(System.currentTimeMillis()-n*24*60*60*1000);
 	    DateFormat formatter = new SimpleDateFormat("EEEE");
@@ -231,11 +250,12 @@ public class SearcherController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "searchButton") {
 			String textString = viewSearcher.getTextField();
+			String filter = viewSearcher.getFilter();
 			if(textString.equals("")) {
 				viewSearcher.changePanelToNotFound();
 			}
 			else {
-				localities = model.getLocality(textString);
+				localities = model.getLocality(textString, filter);
 				if(localities.size() == 0) {
 					viewSearcher.changePanelToNotFound();
 				}
@@ -267,22 +287,8 @@ public class SearcherController implements ActionListener{
 			}
 			
 			Map<Date, Set<ProcessedData>> processedDatas = model.getProcessedData(localityToShow);
-			
-			NavigableSet<Date> navigableSet = ((TreeMap) processedDatas).descendingKeySet();
-			Iterator<Date> iterator = navigableSet.descendingIterator();
-			
-			Set<ProcessedData> processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherDay5(processedDataIterator);
-			processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherDay4(processedDataIterator);
-			processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherDay3(processedDataIterator);
-			processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherDay2(processedDataIterator);
-			processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherDay1(processedDataIterator);
-			processedDataIterator = processedDatas.get(iterator.next());
-			setValuesWeatherToday(localityToShow, processedDataIterator);
+						
+			setValuesWeather(processedDatas, localityToShow);
 
 			viewSearcher.changePanelToData();
 			uiFrame.refresh();
