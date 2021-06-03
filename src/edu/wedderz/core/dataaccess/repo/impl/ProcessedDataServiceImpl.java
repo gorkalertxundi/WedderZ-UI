@@ -25,8 +25,9 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 	private DataTypeService dataTypeService = new DataTypeServiceImpl();
 
 	@Override
-	public TreeMap<Date, Set<ProcessedData>> getProcessedDataLatest(Locality locality, int days) {
-		TreeMap<Date, Set<ProcessedData>> data = new TreeMap<>();
+	public Map<Date, Set<ProcessedData>> getProcessedDataLatest(Locality locality, int days) {
+		Map<Date, Set<ProcessedData>> data = new TreeMap<>();
+		
 		if(days <= 0) return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
 				+ "	FROM wedderz.processed_data\r\n"
@@ -73,8 +74,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 	}
 
 	@Override
-	public TreeMap<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Timestamp date) {
-		TreeMap<Date, Set<ProcessedData>> data = new TreeMap<>();
+	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Timestamp date) {
+		Map<Date, Set<ProcessedData>> data = new TreeMap<>();
 		return data;
 	}
 
