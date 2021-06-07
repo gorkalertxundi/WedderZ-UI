@@ -11,7 +11,7 @@ public class Order {
 	Set<Station> stations;
 	double price;
 	String address;
-	
+
 	public Order(int orderId, int userId, Timestamp date, Set<Station> stations, double price, String address) {
 		super();
 		this.orderId = orderId;
@@ -21,26 +21,33 @@ public class Order {
 		this.price = price;
 		this.address = address;
 	}
+
 	public int getOrderId() {
 		return orderId;
 	}
+
 	public Timestamp getDate() {
 		return date;
 	}
+
 	public Set<Station> getStations() {
 		return stations;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
-	
+
 }

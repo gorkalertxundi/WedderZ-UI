@@ -1,5 +1,6 @@
 package edu.wedderz.core.dataaccess.repo.impl;
 
+import java.awt.print.Printable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ public class LocalityServiceImpl implements LocalityService {
 
 	@Override
 	public Locality getLocalityById(int localityId) {
+		if(localityId <= 0) return null;
 		String query = "SELECT locality_id, locality_name, latitude, longitude, country_id FROM wedderz.locality WHERE locality_id = ?";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);

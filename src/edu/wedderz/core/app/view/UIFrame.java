@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import edu.wedderz.core.app.controller.MiAction;
+import edu.wedderz.core.app.controller.StationListController;
 
 public class UIFrame extends JFrame {
 	
@@ -24,7 +25,7 @@ public class UIFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initialiciteAction();
 		this.setJMenuBar(createMenuBar());
-		this.setContentPane(new BusquedaLocalidades(this));
+		this.setContentPane(new StationListController().getStationListView());
 		this.setVisible(true);
 	}
 	

@@ -20,4 +20,9 @@ public interface OrderService {
 	
 	public Integer getStationStock();
 	
+	public Double getStationWeight();
+	
+	public Double getCurrentPrice();
+	
+	
 }

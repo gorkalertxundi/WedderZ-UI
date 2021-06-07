@@ -29,7 +29,6 @@ public class SearcherModel {
 	public Map<Date, Set<ProcessedData>> getProcessedData(Locality localidad) {
 	
 		Map<Date, Set<ProcessedData>> processedDatas = (Map<Date, Set<ProcessedData>>) processedDataService.getProcessedDataLatest(localidad, 6);
-		
 		return processedDatas;
 	}
 	

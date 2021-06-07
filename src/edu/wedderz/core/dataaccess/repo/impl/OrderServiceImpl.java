@@ -264,5 +264,47 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return stock;
 	}
+	
+	@Override
+	public Double getStationWeight() {
+		Double weight = null;
+		String query = "SELECT weight FROM wedderz.station_specs;";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			weight = rs.getDouble("weight");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return weight;
+	}
+	
+	@Override
+	public Double getCurrentPrice() {
+		Double price = null;
+		String query = "SELECT price\r\n"
+				+ "	FROM wedderz.station_price\r\n"
+				+ "	ORDER BY date DESC\r\n"
+				+ "	LIMIT 1";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			price = rs.getDouble("price");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return price;
+	}
+	
 
 }
