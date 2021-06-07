@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import edu.wedderz.core.app.controller.MiAction;
 
@@ -16,7 +19,7 @@ public class UIFrame extends JFrame {
 	AbstractAction search, close, open, stations, incidents, buy;
 
 	public UIFrame() {
-		this.setSize(new Dimension(1280,720)); //PC
+		this.setSize(new Dimension(1280,760)); //PC
 		//this.setSize(new Dimension(750,1334)); //Movil
 		this.setTitle("WedderZ");
 		this.setIconImage(new ImageIcon("icons/logo.png").getImage());
@@ -95,13 +98,19 @@ public class UIFrame extends JFrame {
 		return menu;
 	}
 	
+	public void setPanel(JPanel panel) {
+		this.setContentPane(panel);
+		refresh();
+	}
+	
 	public void refresh() {
         this.invalidate();
         this.validate();
         this.repaint();
     }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		UIFrame frameTMP = new UIFrame();
 
 	}
