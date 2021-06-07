@@ -74,7 +74,7 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 	}
 
 	@Override
-	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Timestamp date) {
+	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Date date, int days) {
 		Map<Date, Set<ProcessedData>> data = new TreeMap<>();
 		return data;
 	}

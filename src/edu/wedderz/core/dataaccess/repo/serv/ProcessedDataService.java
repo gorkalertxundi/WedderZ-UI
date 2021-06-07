@@ -12,6 +12,6 @@ public interface ProcessedDataService {
 
 	public Map<Date, Set<ProcessedData>> getProcessedDataLatest(Locality location, int days);
 	
-	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality location, Timestamp date);
+	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality location, Date date, int days);
 	
 }
