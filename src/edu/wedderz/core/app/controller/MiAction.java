@@ -39,7 +39,7 @@ public class MiAction extends AbstractAction{
 		case "Mis incidencias":
 			break;
 		case "Comprar estaciones":
-			frame.setPanel(new ShopPanel());
+			frame.setPanel(new ShopPanel()); //
 			break;
 		default:
 			break;
