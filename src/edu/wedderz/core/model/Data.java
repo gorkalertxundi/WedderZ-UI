@@ -2,14 +2,14 @@ package edu.wedderz.core.model;
 
 import java.util.Date;
 
-public class ProcessedData {
+public class Data {
 
 	Locality locality;
 	DataType dataType;
 	Date date;
 	double value;
 	
-	public ProcessedData(Locality locality, DataType dataType, Date date, double value) {
+	public Data(Locality locality, DataType dataType, Date date, double value) {
 		super();
 		this.locality = locality;
 		this.dataType = dataType;

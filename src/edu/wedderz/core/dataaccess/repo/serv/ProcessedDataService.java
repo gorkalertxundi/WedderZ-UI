@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.wedderz.core.model.Locality;
-import edu.wedderz.core.model.ProcessedData;
+import edu.wedderz.core.model.Data;
 
 public interface ProcessedDataService {
 
-	public Map<Date, Set<ProcessedData>> getProcessedDataLatest(Locality location, int days);
+	public Map<Date, Set<Data>> getProcessedDataLatest(Locality location, int days);
 	
-	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality location, Date date, int days);
+	public Map<Date, Set<Data>> getProcessedDataByDate(Locality location, Date date, int days);
 	
 }

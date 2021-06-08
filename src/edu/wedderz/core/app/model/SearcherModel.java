@@ -9,7 +9,7 @@ import edu.wedderz.core.dataaccess.repo.impl.ProcessedDataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.serv.LocalityService;
 import edu.wedderz.core.dataaccess.repo.serv.ProcessedDataService;
 import edu.wedderz.core.model.Locality;
-import edu.wedderz.core.model.ProcessedData;
+import edu.wedderz.core.model.Data;
 
 public class SearcherModel {
 	
@@ -26,9 +26,9 @@ public class SearcherModel {
 
 	}
 
-	public Map<Date, Set<ProcessedData>> getProcessedData(Locality localidad) {
+	public Map<Date, Set<Data>> getProcessedData(Locality localidad) {
 	
-		Map<Date, Set<ProcessedData>> processedDatas = (Map<Date, Set<ProcessedData>>) processedDataService.getProcessedDataLatest(localidad, 6);
+		Map<Date, Set<Data>> processedDatas = (Map<Date, Set<Data>>) processedDataService.getProcessedDataLatest(localidad, 6);
 		return processedDatas;
 	}
 	

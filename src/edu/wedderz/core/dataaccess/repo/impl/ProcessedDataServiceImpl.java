@@ -18,15 +18,15 @@ import edu.wedderz.core.dataaccess.repo.serv.DataTypeService;
 import edu.wedderz.core.dataaccess.repo.serv.ProcessedDataService;
 import edu.wedderz.core.model.DataType;
 import edu.wedderz.core.model.Locality;
-import edu.wedderz.core.model.ProcessedData;
+import edu.wedderz.core.model.Data;
 
 public class ProcessedDataServiceImpl implements ProcessedDataService {
 	
 	private DataTypeService dataTypeService = new DataTypeServiceImpl();
 
 	@Override
-	public Map<Date, Set<ProcessedData>> getProcessedDataLatest(Locality locality, int days) {
-		Map<Date, Set<ProcessedData>> data = new TreeMap<>();
+	public Map<Date, Set<Data>> getProcessedDataLatest(Locality locality, int days) {
+		Map<Date, Set<Data>> data = new TreeMap<>();
 		
 		if(days <= 0) return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
@@ -57,13 +57,13 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 				}
 				Date date = rs.getDate("data_date");
 				double value = rs.getDouble("data_value");
-				Set<ProcessedData> set;
+				Set<Data> set;
 				if(!data.containsKey(date)) {
 					set = new HashSet<>();
 					data.put(date, set);
 				}
 				else set = data.get(date);
-				set.add(new ProcessedData(locality, dataType, date, value));
+				set.add(new Data(locality, dataType, date, value));
 			};
 					
 		} catch (SQLException e) {
@@ -74,8 +74,8 @@ public class ProcessedDataServiceImpl implements ProcessedDataService {
 	}
 
 	@Override
-	public Map<Date, Set<ProcessedData>> getProcessedDataByDate(Locality locality, Date date, int days) {
-		Map<Date, Set<ProcessedData>> data = new TreeMap<>();
+	public Map<Date, Set<Data>> getProcessedDataByDate(Locality locality, Date date, int days) {
+		Map<Date, Set<Data>> data = new TreeMap<>();
 		return data;
 	}
 
