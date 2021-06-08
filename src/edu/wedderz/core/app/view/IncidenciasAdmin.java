@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JEditorPane;
@@ -19,6 +20,9 @@ import javax.swing.border.MatteBorder;
 import edu.wedderz.core.app.controller.IncidenciasController;
 import java.awt.List;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import java.awt.SystemColor;
 
 
 
@@ -26,14 +30,15 @@ public class IncidenciasAdmin extends JPanel  {
 
 	
 	
-	Button buttonEnviar;
-	JEditorPane editorPaneAsunto;
+	Button buttonDenegar;
+	public JEditorPane editorPaneAsunto;
 
-	JEditorPane editorPaneDescripcion;
+	public JEditorPane editorPaneDescripcion;
 	Boolean prueba; 
-	private Button buttonAceptar;
-	private JComboBox comboBox;
-	private Button buttonActualizar;
+	Button buttonAceptar;
+	JComboBox comboBox;
+	 Button buttonActualizar;
+	 private JTextArea textAreaEstacion;
 	
 	public IncidenciasAdmin(UIFrame uiFrame) {
 		IncidenciasController incidenciascontroller;
@@ -43,10 +48,10 @@ public class IncidenciasAdmin extends JPanel  {
 		
 		//asusnto
 		 editorPaneAsunto = new JEditorPane();
+		 editorPaneAsunto.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		editorPaneAsunto.setBackground(Color.LIGHT_GRAY);
 		add(editorPaneAsunto, BorderLayout.NORTH);
-		
-		
+		editorPaneAsunto.setBorder(BorderFactory.createTitledBorder("Asunto"));
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(Color.WHITE));
@@ -55,8 +60,19 @@ public class IncidenciasAdmin extends JPanel  {
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
+		
+		textAreaEstacion = new JTextArea();
+		textAreaEstacion.setBackground(SystemColor.inactiveCaptionBorder);
+		textAreaEstacion.setEnabled(false);
+		textAreaEstacion.setEditable(false);
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 0;
+		gbc_textArea.gridy = 1;
+		panel.add(textAreaEstacion, gbc_textArea);
 		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -88,28 +104,31 @@ public class IncidenciasAdmin extends JPanel  {
 		
 		
 		editorPaneDescripcion = new JEditorPane();
+		editorPaneDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		editorPaneDescripcion.setBackground(Color.LIGHT_GRAY);
 		panelDescripcion.add(editorPaneDescripcion);
+		editorPaneDescripcion.setBorder(BorderFactory.createTitledBorder("Descripcion"));
+
 		
 		
 		
-		incidenciascontroller=new IncidenciasController(this);
-		setActionListener(incidenciascontroller);
 		
-		ButtonGroup bg=new ButtonGroup();
+		
 		
 		buttonActualizar = new Button("Actualizar");
 		buttonActualizar.setFont(new Font("Dialog", Font.PLAIN, 17));
-		buttonActualizar.setActionCommand("Actualizar");
+		buttonActualizar.setActionCommand("buttonActualizar");
 		GridBagConstraints gbc_buttonActualizar = new GridBagConstraints();
 		gbc_buttonActualizar.insets = new Insets(0, 0, 5, 5);
 		gbc_buttonActualizar.gridx = 1;
 		gbc_buttonActualizar.gridy = 2;
 		panel.add(buttonActualizar, gbc_buttonActualizar);
 		
-		buttonEnviar = new Button("Denegar");
-		buttonEnviar.setFont(new Font("Dialog", Font.PLAIN, 17));
-		buttonEnviar.setActionCommand("buttonEnviar");
+		buttonDenegar = new Button("Denegar");
+		buttonDenegar.setFont(new Font("Dialog", Font.PLAIN, 17));
+		buttonDenegar.setActionCommand("buttonDenegar");
+		
+		
 		
 			
 			
@@ -117,14 +136,22 @@ public class IncidenciasAdmin extends JPanel  {
 			gbc_button_11.insets = new Insets(0, 0, 5, 0);
 			gbc_button_11.gridx = 2;
 			gbc_button_11.gridy = 2;
-			panel.add(buttonEnviar, gbc_button_11);
+			panel.add(buttonDenegar, gbc_button_11);
 			
+			
+			incidenciascontroller=new IncidenciasController(this);
+			setActionListener(incidenciascontroller);
+			
+			buttonDenegar.addActionListener(incidenciascontroller);
+			buttonAceptar.addActionListener(incidenciascontroller);
+			buttonActualizar.addActionListener(incidenciascontroller);
+
 	}
 	
 	
 	public void setActionListener(IncidenciasController incidenciascontroller) {
 		//buttonEnviar.setActionCommand("buttonEnviar");
-	//	buttonEnviar.addActionListener(incidenciascontroller);
+		buttonDenegar.addActionListener(incidenciascontroller);
 			 
 			}
 
@@ -144,6 +171,24 @@ public class IncidenciasAdmin extends JPanel  {
 		comboBox.addItem("dos");
 		comboBox.addItem("tres");
 	}
+
+
+	public void setEditorPaneAsunto(JEditorPane editorPaneAsunto) {
+		this.editorPaneAsunto = editorPaneAsunto;
+	}
+
+
+	public void setEditorPaneDescripcion(JEditorPane editorPaneDescripcion) {
+		this.editorPaneDescripcion = editorPaneDescripcion;
+	}
+
+
+	public String getComboBoxValue() {
+		return comboBox.getSelectedItem().toString();
+	}
+
+
+	
 
 	
 	
