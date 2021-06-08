@@ -7,6 +7,7 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 
 import edu.wedderz.core.app.view.BusquedaLocalidades;
+import edu.wedderz.core.app.view.IncidenciasAdmin;
 import edu.wedderz.core.app.view.ShopPanel;
 import edu.wedderz.core.app.view.UIFrame;
 
@@ -36,7 +37,10 @@ public class MiAction extends AbstractAction{
 			break;
 		case "Mis estaciones":
 			break;
-		case "Mis incidencias":
+		case "Mis Incidencias":
+			System.out.println("blabla");
+			frame.setPanel(new IncidenciasAdmin(frame));
+			
 			break;
 		case "Comprar estaciones":
 			frame.setPanel(new ShopPanel()); //
