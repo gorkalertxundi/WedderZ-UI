@@ -1,54 +1,150 @@
 package edu.wedderz.core.app.view;
 
-import javax.swing.JPanel;
-import java.awt.Scrollbar;
-import javax.swing.BoxLayout;
-import javax.swing.JEditorPane;
-import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.JLayeredPane;
-import javax.swing.JMenu;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.JMenuItem;
-import java.awt.Canvas;
-import javax.swing.JProgressBar;
 import java.awt.BorderLayout;
-import javax.swing.JList;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+
+import edu.wedderz.core.app.controller.IncidenciasController;
+import java.awt.List;
+import javax.swing.JComboBox;
+
+
 
 public class IncidenciasAdmin extends JPanel  {
 
 	
 	
-	
+	Button buttonEnviar;
+	JEditorPane editorPaneAsunto;
 
+	JEditorPane editorPaneDescripcion;
+	Boolean prueba; 
+	private Button buttonAceptar;
+	private JComboBox comboBox;
+	private Button buttonActualizar;
+	
 	public IncidenciasAdmin(UIFrame uiFrame) {
+		IncidenciasController incidenciascontroller;
+		
+		setBorder(new MatteBorder(20, 20, 20, 20, (Color) Color.WHITE));
 		setLayout(new BorderLayout(0, 0));
 		
-		JList list = new JList();
-		list.setBackground(Color.RED);
-		add(list, BorderLayout.NORTH);
+		//asusnto
+		 editorPaneAsunto = new JEditorPane();
+		editorPaneAsunto.setBackground(Color.LIGHT_GRAY);
+		add(editorPaneAsunto, BorderLayout.NORTH);
+		
+		
 		
 		JPanel panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		panel.setBorder(new LineBorder(Color.WHITE));
+		add(panel, BorderLayout.SOUTH);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		JEditorPane dtrpnAsunto = new JEditorPane();
-		dtrpnAsunto.setText("Asunto");
-		panel.add(dtrpnAsunto, BorderLayout.NORTH);
+		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JEditorPane editorPane = new JEditorPane();
-		panel.add(editorPane, BorderLayout.CENTER);
-		
+		addIncidencias(comboBox);
+
 		
 		
+		
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 1;
+		panel.add(comboBox, gbc_comboBox);
+		
+		buttonAceptar = new Button("Aceptar");
+		buttonAceptar.setFont(new Font("Dialog", Font.PLAIN, 17));
+		GridBagConstraints gbc_buttonAceptar = new GridBagConstraints();
+		gbc_buttonAceptar.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonAceptar.gridx = 0;
+		gbc_buttonAceptar.gridy = 2;
+		panel.add(buttonAceptar, gbc_buttonAceptar);
+		//descripcion
+		JPanel panelDescripcion = new JPanel();
+		panelDescripcion.setBorder(new MatteBorder(10, 1, 1, 1, (Color) Color.WHITE));
+		add(panelDescripcion, BorderLayout.CENTER);
+		panelDescripcion.setLayout(new BoxLayout(panelDescripcion, BoxLayout.X_AXIS));
+		
+		
+		editorPaneDescripcion = new JEditorPane();
+		editorPaneDescripcion.setBackground(Color.LIGHT_GRAY);
+		panelDescripcion.add(editorPaneDescripcion);
+		
+		
+		
+		incidenciascontroller=new IncidenciasController(this);
+		setActionListener(incidenciascontroller);
+		
+		ButtonGroup bg=new ButtonGroup();
+		
+		buttonActualizar = new Button("Actualizar");
+		buttonActualizar.setFont(new Font("Dialog", Font.PLAIN, 17));
+		buttonActualizar.setActionCommand("Actualizar");
+		GridBagConstraints gbc_buttonActualizar = new GridBagConstraints();
+		gbc_buttonActualizar.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonActualizar.gridx = 1;
+		gbc_buttonActualizar.gridy = 2;
+		panel.add(buttonActualizar, gbc_buttonActualizar);
+		
+		buttonEnviar = new Button("Denegar");
+		buttonEnviar.setFont(new Font("Dialog", Font.PLAIN, 17));
+		buttonEnviar.setActionCommand("buttonEnviar");
+		
+			
+			
+			GridBagConstraints gbc_button_11 = new GridBagConstraints();
+			gbc_button_11.insets = new Insets(0, 0, 5, 0);
+			gbc_button_11.gridx = 2;
+			gbc_button_11.gridy = 2;
+			panel.add(buttonEnviar, gbc_button_11);
+			
 	}
 	
 	
-	
-	
-	
+	public void setActionListener(IncidenciasController incidenciascontroller) {
+		//buttonEnviar.setActionCommand("buttonEnviar");
+	//	buttonEnviar.addActionListener(incidenciascontroller);
+			 
+			}
+
+
+	public String getEditorPaneAsunto() {
+		return editorPaneAsunto.getText();
+	}
+
+
+	public String getEditorPaneDescripcion() {
+		return editorPaneDescripcion.getText();
+	}
+
+	public void addIncidencias(JComboBox comboBox) {
+		
+		comboBox.addItem("uno");
+		comboBox.addItem("dos");
+		comboBox.addItem("tres");
+	}
+
 	
 	
 	
