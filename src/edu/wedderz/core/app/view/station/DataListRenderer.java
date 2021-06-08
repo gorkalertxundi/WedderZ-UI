@@ -1,7 +1,9 @@
 package edu.wedderz.core.app.view.station;
 
+import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -19,6 +21,7 @@ public class DataListRenderer implements ListCellRenderer<Data> {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(8, 8, 8, 8)));
 		panel.add(Box.createHorizontalGlue());
 		panel.add(new JLabel(value.getDataType().getDescription() + ": " +  value.getValue() + " " + value.getDataType().getUnit()));
 		panel.add(Box.createHorizontalGlue());

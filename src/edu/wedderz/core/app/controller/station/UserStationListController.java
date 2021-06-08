@@ -6,22 +6,30 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import edu.wedderz.core.app.view.UIFrame;
+import edu.wedderz.core.app.view.station.StationDataList;
 import edu.wedderz.core.app.view.station.StationList;
 import edu.wedderz.core.app.view.station.UserStationListView;
 import edu.wedderz.core.app.view.station.UserStationView;
+import edu.wedderz.core.dataaccess.repo.impl.DataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
+import edu.wedderz.core.dataaccess.repo.serv.DataService;
 import edu.wedderz.core.dataaccess.repo.serv.StationService;
 import edu.wedderz.core.model.Station;
 
 public class UserStationListController implements ActionListener {
 	
-	StationService stationService = new StationServiceImpl();
+	private final int MAX_DATA = 200;
+	
+	private static StationService stationService = new StationServiceImpl();
+	private static DataService dataService = new DataServiceImpl();
 	
 	UIFrame parent;
 	int a;
 	UserStationListView userStationListView;
 	StationList stationList;
 	StationListController stationListController;
+	
+	StationDataList stationDataList;
 	
 	JPanel stationPanel;
 	
@@ -44,14 +52,15 @@ public class UserStationListController implements ActionListener {
 			break;
 		default:
 			switchToStationPanel(Integer.valueOf(ac));
-			System.out.println(Integer.valueOf(ac));
 		}
 		
 	}
 	
 	void switchToStationPanel(int stationId) {
 		Station station = stationService.getStationById(stationId);
-		stationPanel = new UserStationView(station);
+		stationDataList = new StationDataList();
+		stationDataList.setDataList(dataService.getCrudeDataLatestByStation(station, MAX_DATA));
+		stationPanel = new UserStationView(station, stationDataList);
 		parent.setContentPane(stationPanel);
 		parent.refresh();
 	}
