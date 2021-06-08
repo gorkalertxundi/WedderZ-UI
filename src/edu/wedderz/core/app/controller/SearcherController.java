@@ -18,7 +18,7 @@ import edu.wedderz.core.app.model.SearcherModel;
 import edu.wedderz.core.app.view.BusquedaLocalidades;
 import edu.wedderz.core.app.view.LocationSelectionPanel;
 import edu.wedderz.core.app.view.UIFrame;
-import edu.wedderz.core.app.view.WeatherPanel;
+import edu.wedderz.core.app.view.Incidencias;
 import edu.wedderz.core.model.DataType;
 import edu.wedderz.core.model.Locality;
 import edu.wedderz.core.model.ProcessedData;
@@ -28,29 +28,29 @@ public class SearcherController implements ActionListener{
 	String searchField;
 	SearcherModel model;
 	BusquedaLocalidades viewSearcher;
-	WeatherPanel weatherPanel;
+	Incidencias incidencias;
 	UIFrame uiFrame;
 	LocationSelectionPanel locationSelectionPanel;
 	
 	Set<Locality> localities;
 	
-	public SearcherController(BusquedaLocalidades view, WeatherPanel weatherPanel, SearcherModel model, 
+	public SearcherController(BusquedaLocalidades view, Incidencias incidencias, SearcherModel model, 
 			LocationSelectionPanel locationSelectionPanel, UIFrame uiFrame) {
 		this.model = model;
 		this.viewSearcher = view;
-		this.weatherPanel = weatherPanel;
+		this.incidencias = incidencias;
 		this.locationSelectionPanel = locationSelectionPanel;
 		this.uiFrame = uiFrame;
 		locationSelectionPanel.setActionListener(this);
 	}
 	
 	public void setValuesTEMPORAL() {
-		weatherPanel.setCurrentWeatherValues("Orio", "ES", 0, 26, 15, 27, 1018.3, 66, 3.47);
-		weatherPanel.setPast1DaysValues(getDayString(1), 1, 19.4, 15, 22, 43);
-		weatherPanel.setPast2DaysValues(getDayString(2), 2, 13.8, 15, 22, 43);
-		weatherPanel.setPast3DaysValues(getDayString(3), 3, 9.5, 15, 22, 43);
-		weatherPanel.setPast4DaysValues(getDayString(4), 4, 4.3, 15, 22, 43);
-		weatherPanel.setPast5DaysValues(getDayString(5), 5, -3.6, 15, 22, 43);
+	//	weatherPanel.setCurrentWeatherValues("Orio", "ES", 0, 26, 15, 27, 1018.3, 66, 3.47);
+	//	weatherPanel.setPast1DaysValues(getDayString(1), 1, 19.4, 15, 22, 43);
+	//	weatherPanel.setPast2DaysValues(getDayString(2), 2, 13.8, 15, 22, 43);
+	//	weatherPanel.setPast3DaysValues(getDayString(3), 3, 9.5, 15, 22, 43);
+	//	weatherPanel.setPast4DaysValues(getDayString(4), 4, 4.3, 15, 22, 43);
+		//weatherPanel.setPast5DaysValues(getDayString(5), 5, -3.6, 15, 22, 43);
 		
 	}
 	private void setValuesWeatherDay5(Set<ProcessedData> set) {
@@ -78,7 +78,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setPast5DaysValues(getDayString(5), 1, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
+		incidencias.setPast5DaysValues(getDayString(5), 1, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
 	private void setValuesWeatherDay4(Set<ProcessedData> set) {
 		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
@@ -105,7 +105,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setPast4DaysValues(getDayString(4), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
+		incidencias.setPast4DaysValues(getDayString(4), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
 	private void setValuesWeatherDay3(Set<ProcessedData> set) {
 		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
@@ -132,7 +132,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setPast3DaysValues(getDayString(3), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
+		incidencias.setPast3DaysValues(getDayString(3), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
 	private void setValuesWeatherDay2(Set<ProcessedData> set) {
 		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
@@ -159,7 +159,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setPast2DaysValues(getDayString(2), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
+		incidencias.setPast2DaysValues(getDayString(2), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
 	private void setValuesWeatherDay1(Set<ProcessedData> set) {
 		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
@@ -186,7 +186,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setPast1DaysValues(getDayString(1), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
+		incidencias.setPast1DaysValues(getDayString(1), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
 	private void setValuesWeatherToday(Locality localityToShow, Set<ProcessedData> set) {
 		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
@@ -213,7 +213,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}
-		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), 
+		incidencias.setCurrentWeatherValues(localityToShow.getName(), 
 				localityToShow.getCountry().getCountryId(), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
 				temperaturaMax.getValue(), presionData.getValue(), humedadData.getValue(),
 				viento.getValue());

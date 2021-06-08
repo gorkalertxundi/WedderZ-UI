@@ -18,7 +18,7 @@ public class BusquedaLocalidades extends JPanel {
 	
 	private JTextField textField;
 	SearcherModel searcherModel = new SearcherModel();
-	WeatherPanel weatherPanel;
+	Incidencias incidencias;
 	LocationSelectionPanel locationSelectionPanel;
 	SearcherController searcherController;
 	JPanel currentJPanel;
@@ -28,10 +28,10 @@ public class BusquedaLocalidades extends JPanel {
 	public BusquedaLocalidades(UIFrame uiFrame) {
 		setBackground(Color.WHITE);
 		
-		weatherPanel = new WeatherPanel();
+		incidencias = new Incidencias();
 		localityNotFound = new LocalityNotFound();
 		locationSelectionPanel = new LocationSelectionPanel();
-		searcherController = new SearcherController(this, weatherPanel, searcherModel, locationSelectionPanel, uiFrame);
+		searcherController = new SearcherController(this, incidencias, searcherModel, locationSelectionPanel, uiFrame);
 		
 		searcherController.setValuesTEMPORAL();
 		
@@ -77,7 +77,7 @@ public class BusquedaLocalidades extends JPanel {
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
-		currentJPanel = weatherPanel;
+		currentJPanel = incidencias;
 		add(currentJPanel, gbc_panel);
 		
 		
@@ -101,7 +101,7 @@ public class BusquedaLocalidades extends JPanel {
 
 	public void changePanelToData() {
 		this.remove(currentJPanel);
-		currentJPanel = weatherPanel;
+		currentJPanel = incidencias;
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 4;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
