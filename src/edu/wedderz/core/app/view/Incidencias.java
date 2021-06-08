@@ -46,8 +46,6 @@ public class Incidencias extends JPanel  {
 	JEditorPane editorPaneAsunto;
 
 	JEditorPane editorPaneDescripcion;
-	JRadioButton rdbtnCambio;
-	JRadioButton rdbtnReembolso;
 	Boolean prueba; 
 	public Incidencias() {
 		IncidenciasController incidenciascontroller;
@@ -57,6 +55,7 @@ public class Incidencias extends JPanel  {
 		
 		//asusnto
 		 editorPaneAsunto = new JEditorPane();
+		 editorPaneAsunto.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		editorPaneAsunto.setBackground(Color.LIGHT_GRAY);
 		add(editorPaneAsunto, BorderLayout.NORTH);
 		
@@ -69,22 +68,6 @@ public class Incidencias extends JPanel  {
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		//boton
-		 rdbtnCambio = new JRadioButton("Cambio de estacion");
-		rdbtnCambio.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton_1.gridx = 0;
-		gbc_rdbtnNewRadioButton_1.gridy = 0;
-		panel.add(rdbtnCambio, gbc_rdbtnNewRadioButton_1);
-		
-		 rdbtnReembolso = new JRadioButton("Reembolso");
-		rdbtnReembolso.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnNewRadioButton.gridx = 2;
-		gbc_rdbtnNewRadioButton.gridy = 0;
-		panel.add(rdbtnReembolso, gbc_rdbtnNewRadioButton);
 		
 		buttonEnviar = new Button("Enviar");
 		buttonEnviar.setFont(new Font("Dialog", Font.PLAIN, 17));
@@ -105,6 +88,7 @@ public class Incidencias extends JPanel  {
 		
 		
 		editorPaneDescripcion = new JEditorPane();
+		editorPaneDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		editorPaneDescripcion.setBackground(Color.LIGHT_GRAY);
 		panelDescripcion.add(editorPaneDescripcion);
 		
@@ -112,8 +96,6 @@ public class Incidencias extends JPanel  {
 		setActionListener(incidenciascontroller);
 		
 		ButtonGroup bg=new ButtonGroup();
-		bg.add(rdbtnCambio);
-		bg.add(rdbtnReembolso);
 	}
 	
 	
@@ -134,14 +116,8 @@ public class Incidencias extends JPanel  {
 	}
 
 
-	public Boolean getRdbtnCambio() {
-		return rdbtnCambio.isSelected();
-	}
 
 
-	public Boolean getRdbtnReembolso() {
-		return rdbtnReembolso.isSelected();
-	}
 
 	
 

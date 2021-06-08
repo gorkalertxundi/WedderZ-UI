@@ -37,23 +37,14 @@ public class IncidenciasController implements ActionListener {
 			String asuntoString =incidencias.getEditorPaneAsunto();
 			String descripcionString = incidencias.getEditorPaneDescripcion();
 			
-			Boolean rdbtnCambio =  incidencias.getRdbtnCambio();
-			Boolean RdbtnReembolso= incidencias.getRdbtnReembolso();
+			
 			
 			if ((asuntoString.isEmpty() || descripcionString.isEmpty())) {
-				if(rdbtnCambio || RdbtnReembolso ) {
-				}else {
-					JOptionPane.showMessageDialog(null,"Seleccione una opcion");
-
-				}
+				
 				System.out.println("no pusiste nada");
 				JOptionPane.showMessageDialog(null,"Rellena los dos campos ");
 			}else {
-				if(rdbtnCambio || RdbtnReembolso ) {
-				}else {
-					JOptionPane.showMessageDialog(null,"Seleccione una opcion");
-
-				}
+				
 				JOptionPane.showMessageDialog(null,"Tu incidencia se ha mandado correctamente");
 
 			}
