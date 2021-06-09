@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import edu.wedderz.core.app.controller.MiAction;
+import edu.wedderz.core.app.view.search.BusquedaLocalidades;
 
 public class UIFrame extends JFrame {
 	

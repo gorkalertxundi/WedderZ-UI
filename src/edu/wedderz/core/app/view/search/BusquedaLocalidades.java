@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.search;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -10,8 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.wedderz.core.app.controller.SearcherController;
-import edu.wedderz.core.app.model.SearcherModel;
+import edu.wedderz.core.app.controller.search.SearcherController;
+import edu.wedderz.core.app.model.search.SearcherModel;
+import edu.wedderz.core.app.view.UIFrame;
 
 public class BusquedaLocalidades extends JPanel {
 	private static final long serialVersionUID = 1L;

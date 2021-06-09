@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.search;
 
 import java.awt.Color;
 import java.awt.Font;

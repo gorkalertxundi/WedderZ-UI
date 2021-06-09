@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.controller;
+package edu.wedderz.core.app.controller.search;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +14,11 @@ import java.util.TreeMap;
 
 import javax.swing.JComboBox;
 
-import edu.wedderz.core.app.model.SearcherModel;
-import edu.wedderz.core.app.view.BusquedaLocalidades;
-import edu.wedderz.core.app.view.LocationSelectionPanel;
+import edu.wedderz.core.app.model.search.SearcherModel;
 import edu.wedderz.core.app.view.UIFrame;
-import edu.wedderz.core.app.view.WeatherPanel;
+import edu.wedderz.core.app.view.search.BusquedaLocalidades;
+import edu.wedderz.core.app.view.search.LocationSelectionPanel;
+import edu.wedderz.core.app.view.search.WeatherPanel;
 import edu.wedderz.core.model.DataType;
 import edu.wedderz.core.model.Locality;
 import edu.wedderz.core.model.ProcessedData;

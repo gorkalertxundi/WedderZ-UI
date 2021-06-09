@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.model;
+package edu.wedderz.core.app.model.search;
 
 import java.sql.Date;
 import java.util.HashSet;
