@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	private CountryService countryService = new CountryServiceImpl();
 	
 	@Override
-	public User getUserById(int userId) {		
+	public User getUserById(int userId) {	
 		String query = "SELECT users_id, users_name, surname, phone, email, address, cif, country_id, is_admin"
 				+ " FROM wedderz.users WHERE users_id = ?";
 		try (Connection con = PostgreSQLCon.getConnection()) {

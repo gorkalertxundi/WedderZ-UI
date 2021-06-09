@@ -18,4 +18,6 @@ public interface OrderService {
 	
 	public Order makeOrder(User user, int ammount, String address);
 	
+	public Integer getStationStock();
+	
 }
