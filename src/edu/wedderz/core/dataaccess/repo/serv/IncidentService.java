@@ -14,6 +14,9 @@ public interface IncidentService {
 		
 	public Set<Incident> getIncidentByStation(int stationId);
 	
+	public Set<Incident> setIncident(int stationId); // setIncident(asunto,descripcion,idEstacion) para insertar una incidencia
+
+	
 	public boolean createIncident(Incident incident);
 	
 	public boolean updateIncident(Incident incident);
