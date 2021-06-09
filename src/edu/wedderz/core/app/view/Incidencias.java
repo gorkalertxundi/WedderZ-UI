@@ -38,6 +38,7 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.SystemColor;
+import javax.swing.JComboBox;
 
 
 public class Incidencias extends JPanel  {
@@ -47,6 +48,7 @@ public class Incidencias extends JPanel  {
 
 	JEditorPane editorPaneDescripcion;
 	Boolean prueba; 
+	private JComboBox comboBoxEstaciones;
 	public Incidencias() {
 		IncidenciasController incidenciascontroller;
 		
@@ -68,6 +70,14 @@ public class Incidencias extends JPanel  {
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
+		
+		comboBoxEstaciones = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 0;
+		gbc_comboBox.gridy = 1;
+		panel.add(comboBoxEstaciones, gbc_comboBox);
 		
 		buttonEnviar = new Button("Enviar");
 		buttonEnviar.setFont(new Font("Dialog", Font.PLAIN, 17));
