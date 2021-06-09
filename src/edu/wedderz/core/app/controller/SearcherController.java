@@ -58,22 +58,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
@@ -85,22 +85,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
@@ -112,22 +112,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
@@ -139,22 +139,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
@@ -166,22 +166,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
@@ -193,22 +193,22 @@ public class SearcherController implements ActionListener{
 		Iterator<ProcessedData> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			ProcessedData processedData = iterator.next();
-			if (processedData.getDataType().getDescription().equals("Humedad")) {
+			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Velocidad de viento")) {
+			else if(processedData.getDataType().getDataTypeId() == 4) {
 				viento = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura mínima")) {
+			else if(processedData.getDataType().getDataTypeId() == 5) {
 				temperaturaMin = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Presión")) {
+			else if(processedData.getDataType().getDataTypeId() == 2) {
 				presionData = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura máxima")) {
+			else if(processedData.getDataType().getDataTypeId() == 6) {
 				temperaturaMax = processedData;
 			}
-			else if(processedData.getDataType().getDescription().equals("Temperatura")) {
+			else if(processedData.getDataType().getDataTypeId() == 1) {
 				temperaturaMedia = processedData;
 			}
 
