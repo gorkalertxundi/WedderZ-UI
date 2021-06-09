@@ -59,8 +59,9 @@ public class IncidenciasController implements ActionListener {
 				break;
 			case "buttonActualizar":
 				if(incidencias.getComboBoxValue().equals("dos")) {
-					incidencias.editorPaneAsunto.setText("asunto");
-					incidencias.editorPaneDescripcion.setText("Descripcion");
+					
+					mostrarTexto();
+					
 				}else {
 					incidencias.editorPaneAsunto.setText("");
 					incidencias.editorPaneDescripcion.setText("");
@@ -83,6 +84,13 @@ public class IncidenciasController implements ActionListener {
 				break;
 			}
 		}
+	
+public void mostrarTexto() {
+	incidencias.editorPaneAsunto.setText("asunto");
+	incidencias.editorPaneDescripcion.setText("Descripcion");
+	}
+
+
 	}
 	
 	
