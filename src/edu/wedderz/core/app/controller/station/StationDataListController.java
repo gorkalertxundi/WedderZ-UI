@@ -14,27 +14,62 @@ import edu.wedderz.core.model.DataType;
 
 public class StationDataListController implements ActionListener {
 
-	Set<Data> generalSet;
+	private final String[] FILTER_LIST = { "Temperature", "Pressure", "Humidity", "Wind speed", "UV index" };
+
+	Collection<Data> generalSet;
 	Map<DataType, List<Data>> dataSets;
-	
+
 	StationDataList dataList;
-	
+
+	DataType previousFilter = null;
+
 	public StationDataListController() {
-		dataList = new StationDataList();
+		dataList = new StationDataList(this);
 	}
-	
+
 	public void setDataList(Collection<Data> dataSet) {
-		dataList.setDataList(dataSet);
+		generalSet = dataSet;
+		dataList.setDataList(generalSet);
 		dataSets = generalSet.stream().collect(Collectors.groupingBy(Data::getDataType));
+		dataList.enableButtons(dataSets.keySet().stream().map(DataType::getDescription).collect(Collectors.toList()));
+		dataList.disableButton("SHOW_ALL");
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String ac = e.getActionCommand();
-		
-		Set<DataType> keys = dataSets.keySet();
-		DataType t = null;
-		for(DataType k : keys) if(k.getDescription().equals(ac)) t = k;
-		if(dataSets.containsKey(t)) setDataList(dataSets.get(t));
+
+		switch (ac) {
+
+		case "SHOW_ALL":
+			dataList.setDataList(generalSet);
+			dataList.disableButton(ac);
+			break;
+
+		default:
+			Set<DataType> keys = dataSets.keySet();
+			DataType t = null;
+			for (DataType k : keys) {
+				if (k.getDescription().equals(ac))
+					t = k;
+			}
+			if (dataSets.containsKey(t)) {
+				dataList.setDataList(dataSets.get(t));
+			}
+			break;
+
+		}
+
+		dataList.enableButtons(dataSets.keySet().stream().map(DataType::getDescription).collect(Collectors.toList()));
+		dataList.disableButton(ac);
+
+	}
+
+	public String[] getFilterList() {
+		return FILTER_LIST;
+	}
+
+	public StationDataList getStationDataList() {
+		return dataList;
 	}
 }

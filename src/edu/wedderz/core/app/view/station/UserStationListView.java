@@ -1,7 +1,10 @@
 package edu.wedderz.core.app.view.station;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -14,18 +17,24 @@ public class UserStationListView extends JPanel {
 	UserStationListController controller;
 	
 	public UserStationListView(UserStationListController controller, StationList stationList) {
-		this.setBackground(Color.PINK);
+		this.setBackground(Color.WHITE);
 		this.controller = controller;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		JLabel headerLabel = new JLabel("Your stations");
-		headerLabel.setAlignmentY(CENTER_ALIGNMENT);
+		JLabel headerLabel = new JLabel("Your stations:");
 		headerLabel.setAlignmentX(CENTER_ALIGNMENT);
+		headerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+		JPanel headerWrapper = new JPanel();
+		headerWrapper.setBackground(Color.WHITE);
+		headerWrapper.add(headerLabel);
+		headerWrapper.setMaximumSize(new Dimension(headerWrapper.getMaximumSize().width, 32));
+		headerWrapper.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
 		
 		this.add(Box.createVerticalGlue());
-		this.add(headerLabel);
+		this.add(headerWrapper);
 		this.add(stationList);
 		this.add(Box.createVerticalGlue());
+		
 		
 		
 	}

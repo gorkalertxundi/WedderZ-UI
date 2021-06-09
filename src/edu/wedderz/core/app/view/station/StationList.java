@@ -30,13 +30,13 @@ public class StationList extends JPanel {
 	public StationList(StationListController stationListController, ActionListener parent) {
 		this.stationListController = stationListController;
 		this.parent = parent;
-		setBackground(Color.BLACK);
+		setBackground(Color.WHITE);
 
 		listPane = new JScrollPane();
+		listPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		listPane.setPreferredSize(new Dimension(600, 550));
+		listPane.setBackground(Color.WHITE);
 
-		listPane.setPreferredSize(new Dimension(400, 350));
-
-		listPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.add(listPane);
 
 	}
@@ -44,9 +44,11 @@ public class StationList extends JPanel {
 	public void setStationList(Collection<Station> stations) {
 		System.out.println((stations.size() / 2) + stations.size() % 2);
 		JPanel wrapper = new JPanel();
+		wrapper.setBackground(Color.WHITE);
 		wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.PAGE_AXIS));
 		for (Station station : stations) {
 			JPanel stationWrapper = new JPanel();
+			stationWrapper.setBackground(Color.WHITE);
 			stationWrapper.setLayout(new BoxLayout(stationWrapper, BoxLayout.LINE_AXIS));
 			stationWrapper.setBorder(BorderFactory.createCompoundBorder(
 					BorderFactory.createCompoundBorder(
@@ -54,9 +56,10 @@ public class StationList extends JPanel {
 					BorderFactory.createLineBorder(Color.BLACK)),
 					BorderFactory.createEmptyBorder(16, 8, 16, 8)
 					));
-			stationWrapper.add(Box.createRigidArea(new Dimension(16, 0)));
+			stationWrapper.add(Box.createHorizontalGlue());
 			
 			JPanel infoPanel = new JPanel();
+			infoPanel.setBackground(Color.WHITE);
 			infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
 			infoPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 40));
 
@@ -88,12 +91,12 @@ public class StationList extends JPanel {
 			stationWrapper.add(Box.createHorizontalGlue());
 			
 			JButton button = new JButton();
-			button.setText("Ver");
+			button.setText("View");
 			button.addActionListener(parent);
 			button.setActionCommand(String.valueOf(station.getStationId()));
 			button.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(8, 16, 8, 16)));
 			stationWrapper.add(button);
-			stationWrapper.add(Box.createRigidArea(new Dimension(16, 0)));
+			stationWrapper.add(Box.createHorizontalGlue());
 			
 			
 
