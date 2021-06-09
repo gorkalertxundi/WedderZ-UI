@@ -4,8 +4,8 @@ public class Station {
 
 	private int stationId;
 	private String description;
-	private double latitude;
-	private double longitude;
+	private Double latitude;
+	private Double longitude;
 	private Locality locality;
 	private int userId;
 	private boolean disabled;
@@ -38,11 +38,11 @@ public class Station {
 		return description;
 	}
 
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 

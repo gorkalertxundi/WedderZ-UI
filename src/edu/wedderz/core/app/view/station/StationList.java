@@ -42,7 +42,6 @@ public class StationList extends JPanel {
 	}
 
 	public void setStationList(Collection<Station> stations) {
-		System.out.println((stations.size() / 2) + stations.size() % 2);
 		JPanel wrapper = new JPanel();
 		wrapper.setBackground(Color.WHITE);
 		wrapper.setLayout(new BoxLayout(wrapper, BoxLayout.PAGE_AXIS));

@@ -46,7 +46,7 @@ public class UserStationListController implements ActionListener {
 		String ac = e.getActionCommand();
 
 		switch (ac) {
-		case "search":
+		case "SEARCH":
 			System.out.println("Search");
 			break;
 		default:

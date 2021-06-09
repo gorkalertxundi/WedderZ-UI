@@ -23,6 +23,7 @@ public class DataListRenderer implements ListCellRenderer<Data> {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK), BorderFactory.createEmptyBorder(8, 8, 8, 8)));
 		panel.add(Box.createHorizontalGlue());
 		panel.add(new JLabel(value.getDataType().getDescription() + ": " +  value.getValue() + " " + value.getDataType().getUnit()));

@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 				+ "FROM wedderz.users WHERE LOWER(users_name) LIKE LOWER(?)";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
-			statement.setString(1, name);
+			statement.setString(1, "%" + name + "%");
 			statement.execute();
 			ResultSet rs = statement.getResultSet();
 			while(rs.next()) {

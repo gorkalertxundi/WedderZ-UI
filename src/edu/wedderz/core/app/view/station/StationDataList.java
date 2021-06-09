@@ -30,7 +30,7 @@ public class StationDataList extends JPanel {
 	StationDataListController stationDataListController;
 	
 	public StationDataList(StationDataListController stationDataListController) {
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.WHITE);
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		dataList = new JList<>();
 		dataListModel = new DefaultListModel<>();
@@ -43,6 +43,7 @@ public class StationDataList extends JPanel {
 		headerLabel.setAlignmentX(LEFT_ALIGNMENT);
 		headerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		JPanel headerWrapper = new JPanel(new GridLayout());
+		headerWrapper.setBackground(Color.WHITE);
 		headerWrapper.add(headerLabel);
 		headerWrapper.setMaximumSize(new Dimension(headerWrapper.getMaximumSize().width, 32));
 		headerWrapper.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
@@ -50,17 +51,21 @@ public class StationDataList extends JPanel {
 		this.add(headerWrapper);
 		
 		JScrollPane listPane = new JScrollPane(dataList);
+		listPane.setBackground(Color.WHITE);
 		this.add(listPane);
 		this.add(Box.createRigidArea(new Dimension(0, 32)));
 		
 		JPanel filterButtonsPanel = new JPanel();
 		filterButtonsPanel.setLayout(new BoxLayout(filterButtonsPanel, BoxLayout.LINE_AXIS));
+		filterButtonsPanel.setBackground(Color.WHITE);
 		
 		buttons = new HashMap<>();
 		
 		for(String f : stationDataListController.getFilterList()) buttons.put(f, new JButton());
 		
-		filterButtonsPanel.add(new JLabel("Filter data by type: "));
+		JLabel filterByLabel = new JLabel("Filter data by type: ");
+		filterByLabel.setBackground(Color.WHITE);
+		filterButtonsPanel.add(filterByLabel);
 		JButton noFilterButton = new JButton();
 		noFilterButton.setText("Show all");
 		noFilterButton.setActionCommand("SHOW_ALL");
