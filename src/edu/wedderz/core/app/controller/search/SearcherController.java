@@ -295,8 +295,4 @@ public class SearcherController implements ActionListener{
 
 		}
 	}
-
-
-	
-
 }
