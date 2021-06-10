@@ -18,7 +18,7 @@ import edu.wedderz.core.app.view.station.StationList;
 
 public class AdminStationListView extends JPanel {
 
-	AdminStationListController controller;
+	private AdminStationListController controller;
 
 	private JTextField searchField;
 	private JComboBox<String> searchMode;

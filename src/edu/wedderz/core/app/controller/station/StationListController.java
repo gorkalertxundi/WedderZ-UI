@@ -8,11 +8,11 @@ import edu.wedderz.core.model.Station;
 
 public class StationListController {
 	
-	StationList stationList;
+	private StationList stationList;
 
 	
 	public StationListController(ActionListener parent) {
-		stationList = new StationList(this, parent);
+		stationList = new StationList(parent);
 	}
 
 	public StationList getStationList() {

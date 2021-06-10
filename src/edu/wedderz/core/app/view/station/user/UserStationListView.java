@@ -15,7 +15,7 @@ import edu.wedderz.core.app.view.station.StationList;
 
 public class UserStationListView extends JPanel {
 
-	UserStationListController controller;
+	private UserStationListController controller;
 	
 	public UserStationListView(UserStationListController controller, StationList stationList) {
 		this.setBackground(Color.WHITE);

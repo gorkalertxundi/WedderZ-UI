@@ -24,11 +24,9 @@ public class StationList extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JScrollPane listPane;
-	StationListController stationListController;
-	ActionListener parent;
+	private ActionListener parent;
 
-	public StationList(StationListController stationListController, ActionListener parent) {
-		this.stationListController = stationListController;
+	public StationList(ActionListener parent) {
 		this.parent = parent;
 		setBackground(Color.WHITE);
 

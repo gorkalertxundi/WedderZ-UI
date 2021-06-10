@@ -20,17 +20,15 @@ import edu.wedderz.core.model.Station;
 
 public class UserStationController implements DocumentListener, ActionListener, ChangeListener {
 
-	LocalityService localityService;
-	StationService stationService;
+	private static LocalityService localityService = new LocalityServiceImpl();
+	private static StationService stationService = new StationServiceImpl();
 
-	Station station;
+	private Station station;
 
-	UserStationView userStationView;
+	private UserStationView userStationView;
 
 	public UserStationController(Station station, StationDataList dataList) {
 		this.station = station;
-		localityService = new LocalityServiceImpl();
-		stationService = new StationServiceImpl();
 		userStationView = new UserStationView(station, dataList, this);
 	}
 

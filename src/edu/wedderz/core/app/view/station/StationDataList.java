@@ -24,10 +24,10 @@ import edu.wedderz.core.model.Data;
 
 public class StationDataList extends JPanel {
 	
-	JList<Data> dataList;
-	DefaultListModel<Data> dataListModel;
-	Map<String, JButton> buttons;
-	StationDataListController stationDataListController;
+	private JList<Data> dataList;
+	private DefaultListModel<Data> dataListModel;
+	private Map<String, JButton> buttons;
+	private StationDataListController stationDataListController;
 	
 	public StationDataList(StationDataListController stationDataListController) {
 		this.setBackground(Color.WHITE);

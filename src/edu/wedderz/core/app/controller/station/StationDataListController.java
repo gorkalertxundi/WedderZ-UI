@@ -16,12 +16,12 @@ public class StationDataListController implements ActionListener {
 
 	private final String[] FILTER_LIST = { "Temperature", "Pressure", "Humidity", "Wind speed", "UV index" };
 
-	Collection<Data> generalSet;
-	Map<DataType, List<Data>> dataSets;
+	private Collection<Data> generalSet;
+	private Map<DataType, List<Data>> dataSets;
 
-	StationDataList dataList;
+	private StationDataList dataList;
 
-	DataType previousFilter = null;
+	private DataType previousFilter = null;
 
 	public StationDataListController() {
 		dataList = new StationDataList(this);
