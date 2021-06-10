@@ -10,7 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import edu.wedderz.core.app.controller.MiAction;
-import edu.wedderz.core.app.controller.station.AdminStationListController;
+import edu.wedderz.core.app.controller.station.admin.AdminStationListController;
 
 public class UIFrame extends JFrame {
 	

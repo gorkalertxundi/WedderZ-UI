@@ -1,13 +1,16 @@
-package edu.wedderz.core.app.controller.station;
+package edu.wedderz.core.app.controller.station.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashSet;
 
+import edu.wedderz.core.app.controller.station.StationDataListController;
+import edu.wedderz.core.app.controller.station.StationListController;
+import edu.wedderz.core.app.controller.station.user.UserStationController;
 import edu.wedderz.core.app.view.UIFrame;
-import edu.wedderz.core.app.view.station.AdminStationListView;
 import edu.wedderz.core.app.view.station.StationList;
+import edu.wedderz.core.app.view.station.admin.AdminStationListView;
 import edu.wedderz.core.dataaccess.repo.impl.DataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.LocalityServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
@@ -37,7 +40,7 @@ public class AdminStationListController implements ActionListener {
 
 	StationDataListController stationDataListController;
 
-	UserStationController stationPanel;
+	AdminStationController stationPanel;
 
 	public AdminStationListController(UIFrame parent) {
 		this.parent = parent;
@@ -65,8 +68,8 @@ public class AdminStationListController implements ActionListener {
 		Station station = stationService.getStationById(stationId);
 		stationDataListController = new StationDataListController();
 		stationDataListController.setDataList(dataService.getCrudeDataLatestByStation(station, MAX_DATA));
-		stationPanel = new UserStationController(station, stationDataListController.getStationDataList());
-		parent.setContentPane(stationPanel.getUserStationView());
+		stationPanel = new AdminStationController(station, stationDataListController.getStationDataList());
+		parent.setContentPane(stationPanel.getAdminStationView());
 		parent.refresh();
 	}
 

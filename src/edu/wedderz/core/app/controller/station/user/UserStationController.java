@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.controller.station;
+package edu.wedderz.core.app.controller.station.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import edu.wedderz.core.app.view.station.StationDataList;
-import edu.wedderz.core.app.view.station.UserStationView;
+import edu.wedderz.core.app.view.station.user.UserStationView;
 import edu.wedderz.core.dataaccess.repo.impl.LocalityServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
 import edu.wedderz.core.dataaccess.repo.serv.LocalityService;

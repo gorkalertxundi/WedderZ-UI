@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view.station;
+package edu.wedderz.core.app.view.station.admin;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,7 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.wedderz.core.app.controller.station.AdminStationListController;
+import edu.wedderz.core.app.controller.station.admin.AdminStationListController;
+import edu.wedderz.core.app.view.station.StationList;
 
 public class AdminStationListView extends JPanel {
 
@@ -34,6 +35,7 @@ public class AdminStationListView extends JPanel {
 		headerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 24));
 
 		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(Color.WHITE);
 
 		searchField = new JTextField(10);
 		searchPanel.add(searchField);

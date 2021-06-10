@@ -1,15 +1,17 @@
-package edu.wedderz.core.app.controller.station;
+package edu.wedderz.core.app.controller.station.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import edu.wedderz.core.app.controller.station.StationDataListController;
+import edu.wedderz.core.app.controller.station.StationListController;
 import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.station.StationDataList;
 import edu.wedderz.core.app.view.station.StationList;
-import edu.wedderz.core.app.view.station.UserStationListView;
-import edu.wedderz.core.app.view.station.UserStationView;
+import edu.wedderz.core.app.view.station.user.UserStationListView;
+import edu.wedderz.core.app.view.station.user.UserStationView;
 import edu.wedderz.core.dataaccess.repo.impl.DataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
 import edu.wedderz.core.dataaccess.repo.serv.DataService;

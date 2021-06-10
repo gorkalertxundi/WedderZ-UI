@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view.station;
+package edu.wedderz.core.app.view.station.user;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -25,7 +25,8 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.SpinnerNumberModel;
 
-import edu.wedderz.core.app.controller.station.UserStationController;
+import edu.wedderz.core.app.controller.station.user.UserStationController;
+import edu.wedderz.core.app.view.station.StationDataList;
 import edu.wedderz.core.model.Locality;
 import edu.wedderz.core.model.Station;
 

@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view.station;
+package edu.wedderz.core.app.view.station.user;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +10,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.wedderz.core.app.controller.station.UserStationListController;
+import edu.wedderz.core.app.controller.station.user.UserStationListController;
+import edu.wedderz.core.app.view.station.StationList;
 
 public class UserStationListView extends JPanel {
 

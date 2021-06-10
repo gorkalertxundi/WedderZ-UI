@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import edu.wedderz.core.dataaccess.PostgreSQLCon;
 import edu.wedderz.core.dataaccess.repo.serv.LocalityService;
@@ -50,10 +53,10 @@ public class StationServiceImpl implements StationService {
 	}
 
 	@Override
-	public Set<Station> getStationsByLocality(Locality locality) {
-		Set<Station> stations = new HashSet<>();
+	public Collection<Station> getStationsByLocality(Locality locality) {
+		List<Station> stations = new ArrayList<>();
 		String query = "SELECT station_id, description, latitude, longitude, locality_id, users_id, is_disabled\r\n"
-				+ "	FROM wedderz.station WHERE locality_id = ?;";
+				+ "	FROM wedderz.station WHERE locality_id = ? ORDER BY station_id ASC;";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setInt(1, locality.getLocalityId());
@@ -80,10 +83,10 @@ public class StationServiceImpl implements StationService {
 	}
 
 	@Override
-	public Set<Station> getStationsOfUser(int userId) {
-		Set<Station> stations = new HashSet<>();
+	public Collection<Station> getStationsOfUser(int userId) {
+		List<Station> stations = new ArrayList<>();
 		String query = "SELECT station_id, description, latitude, longitude, locality_id, users_id, is_disabled\r\n"
-				+ "	FROM wedderz.station WHERE users_id = ?;";
+				+ "	FROM wedderz.station WHERE users_id = ? ORDER BY station_id ASC;";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setInt(1, userId);
@@ -109,8 +112,8 @@ public class StationServiceImpl implements StationService {
 	}
 
 	@Override
-	public Set<Integer> registerStations(User user, Connection con, int ammount) throws SQLException {
-		Set<Integer> stationIds = new HashSet<>();
+	public Collection<Integer> registerStations(User user, Connection con, int ammount) throws SQLException {
+		List<Integer> stationIds = new ArrayList<>();
 		if(ammount <= 0) return stationIds;
 		StringBuilder query = new StringBuilder("INSERT INTO wedderz.station (users_id, is_disabled) VALUES (?, ?)");
 		for(int i = 0; i < ammount - 1; i++) query.append(", (?, ?)");

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,8 +75,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Set<Order> getOrdersByUser(int userId) {
-		Set<Order> orders = new HashSet<>();
+	public Collection<Order> getOrdersByUser(int userId) {
+		Collection<Order> orders = new HashSet<>();
 		String query = "SELECT order_id, order_date, users_id, price, address\r\n"
 				+ "	FROM wedderz.orders\r\n"
 				+ "	WHERE users_id = ?;";
@@ -152,8 +153,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Set<Order> getOrdersByDate(Timestamp startDate, Timestamp endDate) {
-		Set<Order> orders = new HashSet<>();
+	public Collection<Order> getOrdersByDate(Timestamp startDate, Timestamp endDate) {
+		Collection<Order> orders = new HashSet<>();
 		/*
 		 * 
 		 * 
@@ -205,7 +206,7 @@ public class OrderServiceImpl implements OrderService {
 			statement.close();
 			
 			//Register stations
-			Set<Integer> stationIds = stationService.registerStations(user, con, ammount);
+			Collection<Integer> stationIds = stationService.registerStations(user, con, ammount);
 			//Register order
 			statement = con.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS);
 			int i = 1; // i = 7 - 5 - 4 / 2 + 1
