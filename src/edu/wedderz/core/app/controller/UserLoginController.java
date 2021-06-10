@@ -9,8 +9,7 @@ public class UserLoginController {
 	static User user = null;
 	private static UserService userService = new UserServiceImpl();
 	
-	public static User login(String email, String password) {
-		//TODO: login view
+	public static User aa(String email, String password) {
 		return userService.login("angoni@zapatos.yes", "123");
 	}
 	

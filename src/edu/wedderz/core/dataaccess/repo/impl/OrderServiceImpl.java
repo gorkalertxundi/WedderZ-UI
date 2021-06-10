@@ -172,8 +172,8 @@ public class OrderServiceImpl implements OrderService {
 	public Order makeOrder(User user, int ammount, String address) {
 		Order order = null;
 		if(ammount < 0) return order;
-		String stockQuery = "SELECT stock FROM wedderz.station_specs";
-		
+		String stockQuery = "UPDATE wedderz.station_specs SET stock = (SELECT stock FROM wedderz.station_specs) - ?";
+
 		String priceQuery = "SELECT price\r\n"
 				+ "	FROM wedderz.station_price\r\n"
 				+ "	ORDER BY date DESC\r\n"
@@ -190,6 +190,7 @@ public class OrderServiceImpl implements OrderService {
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			con.setAutoCommit(false);
 			PreparedStatement statement = con.prepareStatement(stockQuery);
+			statement.setInt(1, ammount);
 			statement.execute();	
 			ResultSet stockRs = statement.getResultSet();
 			stockRs.next();

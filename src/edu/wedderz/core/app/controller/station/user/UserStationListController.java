@@ -17,6 +17,7 @@ import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
 import edu.wedderz.core.dataaccess.repo.serv.DataService;
 import edu.wedderz.core.dataaccess.repo.serv.StationService;
 import edu.wedderz.core.model.Station;
+import edu.wedderz.core.model.User;
 
 public class UserStationListController implements ActionListener {
 
@@ -35,10 +36,11 @@ public class UserStationListController implements ActionListener {
 
 	UserStationController stationPanel;
 
-	public UserStationListController(UIFrame parent) {
+	public UserStationListController(UIFrame parent, User user) {
 		this.parent = parent;
 		stationListController = new StationListController(this);
 		stationList = stationListController.getStationList();
+		stationList.setStationList(stationService.getStationsOfUser(user.getUserId()));
 		userStationListView = new UserStationListView(this, stationList);
 	}
 

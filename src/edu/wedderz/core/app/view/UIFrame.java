@@ -10,7 +10,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import edu.wedderz.core.app.controller.MiAction;
-import edu.wedderz.core.app.controller.station.admin.AdminStationListController;
+import edu.wedderz.core.app.controller.station.user.UserStationListController;
+import edu.wedderz.core.dataaccess.repo.impl.UserServiceImpl;
+import edu.wedderz.core.model.User;
 
 public class UIFrame extends JFrame {
 	
@@ -25,17 +27,17 @@ public class UIFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.initialiciteAction();
 		this.setJMenuBar(createMenuBar());
-		this.setContentPane(new AdminStationListController(this).getAdminStationListView());
+		this.setContentPane(new UserStationListController(this, new UserServiceImpl().getUserById(13)).getUserStationListView());
 		this.setVisible(true);
 	}
 	
 	private void initialiciteAction() {
-		search = new MiAction("Buscar localidad", new ImageIcon(), "Buscar", KeyEvent.VK_B, this);
-		close = new MiAction("Cerrar sesión", new ImageIcon(), "Cerrar", KeyEvent.VK_C, this);
-		open = new MiAction("Iniciar sesión", new ImageIcon(), "Iniciar", KeyEvent.VK_I, this);
-		stations = new MiAction("Mis Estaciones", new ImageIcon(), "Estaciones", KeyEvent.VK_M, this);
-		incidents = new MiAction("Mis Incidencias", new ImageIcon(), "Incidencias", KeyEvent.VK_I, this);
-		buy = new MiAction("Comprar estaciones", new ImageIcon(), "Compras", KeyEvent.VK_E, this);
+		search = new MiAction("Search locality", new ImageIcon(), "Buscar", KeyEvent.VK_B, this);
+		close = new MiAction("Log out", new ImageIcon(), "Cerrar", KeyEvent.VK_C, this);
+		open = new MiAction("Log in", new ImageIcon(), "Iniciar", KeyEvent.VK_I, this);
+		stations = new MiAction("My stations", new ImageIcon(), "Estaciones", KeyEvent.VK_M, this);
+		incidents = new MiAction("My incidences", new ImageIcon(), "Incidencias", KeyEvent.VK_I, this);
+		buy = new MiAction("Purchase stations", new ImageIcon(), "Compras", KeyEvent.VK_E, this);
 	}
 	
 	private JMenuBar createMenuBar() {
@@ -50,7 +52,7 @@ public class UIFrame extends JFrame {
 	}
 
 	private JMenu createMenuStations() {
-		JMenu menu = new JMenu("Estaciones");
+		JMenu menu = new JMenu("Stations");
 		menu.setMnemonic(KeyEvent.VK_E);
 		
 		menu.add(stations);
@@ -59,7 +61,7 @@ public class UIFrame extends JFrame {
 	}
 
 	private JMenu createMenuSession() {
-		JMenu menu = new JMenu("Sesión");
+		JMenu menu = new JMenu("Session");
 		menu.setMnemonic(KeyEvent.VK_B);
 		
 		menu.add(close);
@@ -69,7 +71,7 @@ public class UIFrame extends JFrame {
 	}
 
 	private JMenu createMenuIncidents() {
-		JMenu menu = new JMenu("Incidencias");
+		JMenu menu = new JMenu("Incidences");
 		menu.setMnemonic(KeyEvent.VK_B);
 		
 		menu.add(incidents);
@@ -79,7 +81,7 @@ public class UIFrame extends JFrame {
 	}
 
 	private JMenu createMenuShops() {
-		JMenu menu = new JMenu("Compras");
+		JMenu menu = new JMenu("Store");
 		menu.setMnemonic(KeyEvent.VK_B);
 		
 		menu.add(buy);
@@ -88,7 +90,7 @@ public class UIFrame extends JFrame {
 	}
 
 	private JMenu createMenuSearch() {
-		JMenu menu = new JMenu("Busquedas");
+		JMenu menu = new JMenu("Search");
 		menu.setMnemonic(KeyEvent.VK_B);
 		
 		menu.add(search);

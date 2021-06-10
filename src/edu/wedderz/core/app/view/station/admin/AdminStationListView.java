@@ -59,6 +59,7 @@ public class AdminStationListView extends JPanel {
 		this.add(headerWrapper);
 		this.add(searchPanel);
 		this.add(stationList);
+		this.add(Box.createRigidArea(new Dimension(0, 32)));
 		this.add(Box.createVerticalGlue());
 	}
 
