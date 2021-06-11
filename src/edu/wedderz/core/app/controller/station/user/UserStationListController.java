@@ -50,9 +50,6 @@ public class UserStationListController implements ActionListener {
 		String ac = e.getActionCommand();
 
 		switch (ac) {
-		case "SEARCH":
-			System.out.println("Search");
-			break;
 		default:
 			switchToStationPanel(Integer.valueOf(ac));
 		}

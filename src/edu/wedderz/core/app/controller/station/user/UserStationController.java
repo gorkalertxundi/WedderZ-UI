@@ -52,6 +52,11 @@ public class UserStationController implements DocumentListener, ActionListener, 
 	public void changedUpdate(DocumentEvent e) {
 		userStationView.enableSaveButton();
 	}
+	
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		userStationView.enableSaveButton();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -69,11 +74,6 @@ public class UserStationController implements DocumentListener, ActionListener, 
 			break;
 		}
 
-		userStationView.enableSaveButton();
-	}
-
-	@Override
-	public void stateChanged(ChangeEvent e) {
 		userStationView.enableSaveButton();
 	}
 
