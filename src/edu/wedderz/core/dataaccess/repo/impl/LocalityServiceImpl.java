@@ -16,10 +16,13 @@ import edu.wedderz.core.model.User;
 
 public class LocalityServiceImpl implements LocalityService {
 
-	CountryService countryService = new CountryServiceImpl();
+	private CountryService countryService = new CountryServiceImpl();
 
 	@Override
 	public Locality getLocalityById(int localityId) {
+		if (localityId <= 0) {
+			return null;
+		}
 		String query = "SELECT locality_id, locality_name, latitude, longitude, country_id FROM wedderz.locality WHERE locality_id = ?";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
@@ -46,7 +49,7 @@ public class LocalityServiceImpl implements LocalityService {
 	@Override
 	public Set<Locality> getLocalitiesByName(String name) {
 		Set<Locality> localities = new HashSet<>();
-		String query = "SELECT locality_id, locality_name, latitude, longitude, country_id FROM wedderz.locality WHERE locality_name LIKE ?";
+		String query = "SELECT locality_id, locality_name, latitude, longitude, country_id FROM wedderz.locality WHERE LOWER(locality_name) LIKE LOWER(?)";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, "%" + name + "%");
@@ -98,8 +101,7 @@ public class LocalityServiceImpl implements LocalityService {
 	@Override
 	public boolean createLocality(Locality locality) {
 		boolean success = false;
-		String query = "INSERT INTO wedderz.locality(\r\n" + "	locality_name, latitude, longitude, country_id)\r\n"
-				+ "	VALUES (?, ?, ?, ?);";
+		String query = "INSERT INTO wedderz.locality(locality_name, latitude, longitude, country_id) VALUES (?, ?, ?, ?);";
 
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
@@ -108,7 +110,8 @@ public class LocalityServiceImpl implements LocalityService {
 			statement.setDouble(i++, locality.getLatitude());
 			statement.setDouble(i++, locality.getLongitude());
 			statement.setString(i++, locality.getCountry().getCountryId());
-			if (statement.executeUpdate() > 0) success = true;
+			if (statement.executeUpdate() > 0)
+				success = true;
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,8 +123,8 @@ public class LocalityServiceImpl implements LocalityService {
 	@Override
 	public Set<Locality> getFavLocalities(int userId) {
 		Set<Locality> localities = new HashSet<>();
-		String query = "SELECT f.users_id, l.locality_id, l.locality_name, l.latitude, l.longitude, l.country_id FROM wedderz.favorite f\r\n"
-				+ "JOIN wedderz.locality l\r\n" + "ON f.locality_id = l.locality_id\r\n" + "WHERE f.users_id = ?;";
+		String query = "SELECT f.users_id, l.locality_id, l.locality_name, l.latitude, l.longitude, l.country_id FROM wedderz.favorite f "
+				+ "JOIN wedderz.locality l ON f.locality_id = l.locality_id WHERE f.users_id = ?;";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setInt(1, userId);
@@ -147,7 +150,7 @@ public class LocalityServiceImpl implements LocalityService {
 	@Override
 	public boolean makeFavorite(User user, Locality locality) {
 		boolean success = false;
-		String query = "INSERT INTO wedderz.favorite(\r\n" + "	users_id, locality_id)\r\n" + "	VALUES (?, ?)";
+		String query = "INSERT INTO wedderz.favorite(users_id, locality_id) VALUES (?, ?)";
 
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
@@ -167,7 +170,7 @@ public class LocalityServiceImpl implements LocalityService {
 	@Override
 	public boolean deleteFavorite(User user, Locality locality) {
 		boolean success = false;
-		String query = "DELETE FROM wedderz.favorite \r\n" + "	WHERE users_id = ? AND locality_id = ?";
+		String query = "DELETE FROM wedderz.favorite WHERE users_id = ? AND locality_id = ?";
 
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);

@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.search;
 
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;

@@ -14,6 +14,8 @@ public interface IssueService {
 		
 	public Set<Issue> getIssuesByStation(int stationId);
 	
+
+	
 	public boolean createIssues(Issue incident);
 	
 	public boolean updateIssues(Issue incident);

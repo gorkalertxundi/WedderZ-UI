@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.search;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import edu.wedderz.core.app.controller.SearcherController;
+import edu.wedderz.core.app.controller.search.SearcherController;
 import edu.wedderz.core.model.Locality;
 
 

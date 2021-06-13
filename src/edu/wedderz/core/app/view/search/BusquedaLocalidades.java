@@ -1,6 +1,7 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.search;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -9,9 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-import edu.wedderz.core.app.controller.SearcherController;
-import edu.wedderz.core.app.model.SearcherModel;
+import edu.wedderz.core.app.controller.search.SearcherController;
+import edu.wedderz.core.app.model.search.SearcherModel;
+import edu.wedderz.core.app.view.UIFrame;
 
 public class BusquedaLocalidades extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +26,7 @@ public class BusquedaLocalidades extends JPanel {
 	SearcherController searcherController;
 	JPanel currentJPanel;
 	LocalityNotFound localityNotFound;
+	JComboBox<String> comboBox;
 
 	
 	public BusquedaLocalidades(UIFrame uiFrame) {
@@ -43,29 +47,31 @@ public class BusquedaLocalidades extends JPanel {
 		setLayout(gridBagLayout);
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(10, 0, 10, 5);
-		gbc_textField.gridx = 1;
+		gbc_textField.gridwidth = 4;
+		gbc_textField.insets = new Insets(20, 0, 10, 0);
+		gbc_textField.gridx = 0;
 		gbc_textField.gridy = 0;
 		add(textField, gbc_textField);
-		textField.setColumns(10);
+		textField.setColumns(25);
 		
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setActionCommand("searchButton");
 		btnNewButton.addActionListener(searcherController);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnNewButton.insets = new Insets(10, 5, 10, 5);
+		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
+		gbc_btnNewButton.insets = new Insets(20, 5, 10, 10);
 		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 0;
 		add(btnNewButton, gbc_btnNewButton);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addItem("Locations");
-		comboBox.addItem("Countries");
+		comboBox = new JComboBox<String>();
+		comboBox.addItem("Locality name");
+		comboBox.addItem("Country");
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(10, 5, 10, 5);
+		gbc_comboBox.insets = new Insets(20, 5, 10, 290);
 		gbc_comboBox.anchor = GridBagConstraints.WEST;
 		gbc_comboBox.gridx = 3;
 		gbc_comboBox.gridy = 0;
@@ -121,6 +127,10 @@ public class BusquedaLocalidades extends JPanel {
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 1;
 		this.add(currentJPanel, gbc_panel);
+	}
+
+	public String getFilter() {
+		return comboBox.getSelectedItem().toString();
 	}
 
 	

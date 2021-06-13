@@ -16,10 +16,10 @@ import edu.wedderz.core.model.User;
 
 public class UserServiceImpl implements UserService {
 	
-	CountryService countryService = new CountryServiceImpl();
+	private CountryService countryService = new CountryServiceImpl();
 	
 	@Override
-	public User getUserById(int userId) {		
+	public User getUserById(int userId) {	
 		String query = "SELECT users_id, users_name, surname, phone, email, address, cif, country_id, is_admin"
 				+ " FROM wedderz.users WHERE users_id = ?";
 		try (Connection con = PostgreSQLCon.getConnection()) {
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 				+ "FROM wedderz.users WHERE LOWER(users_name) LIKE LOWER(?)";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
-			statement.setString(1, name);
+			statement.setString(1, "%" + name + "%");
 			statement.execute();
 			ResultSet rs = statement.getResultSet();
 			while(rs.next()) {
@@ -189,8 +189,8 @@ public class UserServiceImpl implements UserService {
 		int userId;
 		
 		String query = "SELECT users_id, email, users_password"
-				+ "FROM wedderz.users"
-				+ "WHERE email = ? AND users_password = encode(sha256(?::bytea), 'hex')";
+				+ " FROM wedderz.users"
+				+ " WHERE email = ? AND users_password = encode(sha256(?::bytea), 'hex')";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			int i = 1;

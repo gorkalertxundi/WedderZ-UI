@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,8 +75,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Set<Order> getOrdersByUser(int userId) {
-		Set<Order> orders = new HashSet<>();
+	public Collection<Order> getOrdersByUser(int userId) {
+		Collection<Order> orders = new HashSet<>();
 		String query = "SELECT order_id, order_date, users_id, price, address\r\n"
 				+ "	FROM wedderz.orders\r\n"
 				+ "	WHERE users_id = ?;";
@@ -152,8 +153,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Set<Order> getOrdersByDate(Timestamp startDate, Timestamp endDate) {
-		Set<Order> orders = new HashSet<>();
+	public Collection<Order> getOrdersByDate(Timestamp startDate, Timestamp endDate) {
+		Collection<Order> orders = new HashSet<>();
 		/*
 		 * 
 		 * 
@@ -171,6 +172,8 @@ public class OrderServiceImpl implements OrderService {
 	public Order makeOrder(User user, int ammount, String address) {
 		Order order = null;
 		if(ammount < 0) return order;
+		String stockQuery = "UPDATE wedderz.station_specs SET stock = (SELECT stock FROM wedderz.station_specs) - ?";
+
 		String priceQuery = "SELECT price\r\n"
 				+ "	FROM wedderz.station_price\r\n"
 				+ "	ORDER BY date DESC\r\n"
@@ -186,9 +189,17 @@ public class OrderServiceImpl implements OrderService {
 		
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			con.setAutoCommit(false);
-			
+			PreparedStatement statement = con.prepareStatement(stockQuery);
+			statement.setInt(1, ammount);
+			statement.execute();	
+			ResultSet stockRs = statement.getResultSet();
+			stockRs.next();
+			if(stockRs.getInt("stock") < ammount) {
+				statement.close();
+				return null;
+			}
 			//Get price
-			PreparedStatement statement = con.prepareStatement(priceQuery);
+			statement = con.prepareStatement(priceQuery);
 			statement.execute();
 			ResultSet priceRs = statement.getResultSet();
 			priceRs.next();
@@ -196,7 +207,7 @@ public class OrderServiceImpl implements OrderService {
 			statement.close();
 			
 			//Register stations
-			Set<Integer> stationIds = stationService.registerStations(user, con, ammount);
+			Collection<Integer> stationIds = stationService.registerStations(user, con, ammount);
 			//Register order
 			statement = con.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS);
 			int i = 1; // i = 7 - 5 - 4 / 2 + 1
@@ -226,7 +237,7 @@ public class OrderServiceImpl implements OrderService {
 			statement.close();
 			
 			con.commit();
-			
+			System.out.println(orderId);
 			order = getOrderById(orderId);
 			System.out.println(String.join(", ", order.getAddress(), String.valueOf(order.getOrderId()), String.valueOf(order.getStations().size())));
 		} catch (SQLException e) {
@@ -235,6 +246,66 @@ public class OrderServiceImpl implements OrderService {
 
 		
 		return order;
+	}
+
+	@Override
+	public Integer getStationStock() {
+		Integer stock = null;
+		String query = "SELECT stock FROM wedderz.station_specs;";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			stock = rs.getInt("stock");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return stock;
+	}
+	
+	@Override
+	public Double getStationWeight() {
+		Double weight = null;
+		String query = "SELECT weight FROM wedderz.station_specs;";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			weight = rs.getDouble("weight");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return weight;
+	}
+	
+	@Override
+	public Double getCurrentPrice() {
+		Double price = null;
+		String query = "SELECT price\r\n"
+				+ "	FROM wedderz.station_price\r\n"
+				+ "	ORDER BY date DESC\r\n"
+				+ "	LIMIT 1";
+		
+		try (Connection con = PostgreSQLCon.getConnection()) {
+			PreparedStatement statement = con.prepareStatement(query);
+			statement.execute();
+			ResultSet rs = statement.getResultSet();
+			rs.next();
+			price = rs.getDouble("price");
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return price;
 	}
 
 }
