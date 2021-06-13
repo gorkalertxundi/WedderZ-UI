@@ -7,13 +7,10 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 
 import edu.wedderz.core.app.view.UIFrame;
-<<<<<<< HEAD
-import edu.wedderz.core.app.view.search.BusquedaLocalidades;
-import edu.wedderz.core.app.view.shop.ShopPanel;
-=======
 import edu.wedderz.core.app.view.incidents.Incidencias;
 import edu.wedderz.core.app.view.incidents.IncidenciasAdmin;
->>>>>>> refs/heads/Incidencias_Admin
+import edu.wedderz.core.app.view.search.BusquedaLocalidades;
+import edu.wedderz.core.app.view.shop.ShopPanel;
 
 public class MiAction extends AbstractAction {
 

@@ -5,13 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-import edu.wedderz.core.app.model.SearcherModel;
-import edu.wedderz.core.app.view.BusquedaLocalidades;
-import edu.wedderz.core.app.view.LocationSelectionPanel;
-import edu.wedderz.core.app.view.ShopPanel;
-import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.incidents.IncidenciasAdmin;
 
 public class IncidenciasController implements ActionListener {
