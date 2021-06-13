@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.shop;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
-import edu.wedderz.core.app.controller.ShopController;
+import edu.wedderz.core.app.controller.shop.ShopController;
 
 public class ShopPanel extends JPanel{
 	
@@ -33,6 +33,8 @@ public class ShopPanel extends JPanel{
 	JTextField tfTitular;
 	JTextField tfFechaExpiracion;
 	JTextField tfCVV;
+	
+	JSpinner spinnerCantity;
 	
 	JLabel lblEntregaPrevista;
 	JLabel lblPrice;
@@ -60,6 +62,10 @@ public class ShopPanel extends JPanel{
 	
 	public JLabel getlblPrice() {
 		return lblPrice;
+	}
+	
+	public int getSelectedCantity() {
+		return (int) spinnerCantity.getValue();
 	}
 	
 	public void createPanel() {
@@ -374,7 +380,7 @@ public class ShopPanel extends JPanel{
 		gbc_lblCantidad.gridy = 8;
 		this.add(lblCantidad, gbc_lblCantidad);
 		
-		JSpinner spinnerCantity = new JSpinner(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinnerCantity = new JSpinner(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinnerCantity.addChangeListener(controller);
 		spinnerCantity.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_textField = new GridBagConstraints();

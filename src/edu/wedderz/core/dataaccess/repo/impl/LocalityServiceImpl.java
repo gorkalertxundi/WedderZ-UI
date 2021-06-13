@@ -20,6 +20,9 @@ public class LocalityServiceImpl implements LocalityService {
 
 	@Override
 	public Locality getLocalityById(int localityId) {
+		if (localityId <= 0) {
+			return null;
+		}
 		String query = "SELECT locality_id, locality_name, latitude, longitude, country_id FROM wedderz.locality WHERE locality_id = ?";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
