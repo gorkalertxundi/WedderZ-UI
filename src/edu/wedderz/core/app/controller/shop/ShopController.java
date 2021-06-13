@@ -50,7 +50,8 @@ public class ShopController implements ChangeListener, ActionListener {
 		double subtotal = orderService.getCurrentPrice()*cantidad;
 		double gastosEnvio = getPrecioEnvio(cantidad);
 		DecimalFormat df2 = new DecimalFormat("#.##");
-		lblSubtotal.setText("Subtotal: " + df2.format(subtotal) + " \u20AC sin IVA + " + df2.format(gastosEnvio) + " \u20AC de gastos de envio est\u00E1ndar");
+		lblSubtotal.setText("Subtotal: " + df2.format(subtotal) + " \u20AC sin IVA + " 
+		+ df2.format(gastosEnvio) + " \u20AC de gastos de envio est\u00E1ndar");
 	}
 	
 	private double getPrecioEnvio(int cantidad) {
@@ -113,7 +114,8 @@ public class ShopController implements ChangeListener, ActionListener {
 		if (checkDatosDelCliente()) {
 			generarCompra();
 		} else {
-			JOptionPane.showMessageDialog(shoppingPanel, "¡Por favor rellena todos los campos!", "Rellena los campos", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(shoppingPanel, "¡Por favor rellena todos los campos!",
+					"Rellena los campos", JOptionPane.CLOSED_OPTION);
 		}
 	}
 
@@ -122,7 +124,8 @@ public class ShopController implements ChangeListener, ActionListener {
 			guardarCompra();
 		} else {
 			String stock = String.valueOf(orderService.getStationStock());
-			JOptionPane.showMessageDialog(shoppingPanel, "¡Solo hay "+stock+" estaciones disponibles!", "No hay stock disponible", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(shoppingPanel, "¡Solo hay "+stock+
+					" estaciones disponibles!", "No hay stock disponible", JOptionPane.CLOSED_OPTION);
 		}
 	}
 
@@ -136,9 +139,12 @@ public class ShopController implements ChangeListener, ActionListener {
 		int cantidad = shoppingPanel.getSelectedCantity();
 		Order order = orderService.makeOrder(user, cantidad, direccion);
 		if (order != null) {
-			JOptionPane.showMessageDialog(shoppingPanel, "¡Gracias por tu compra!", "Compra realizada", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(shoppingPanel, "¡Gracias por tu compra!", 
+					"Compra realizada", JOptionPane.CLOSED_OPTION);
 		} else {
-			JOptionPane.showMessageDialog(shoppingPanel, "Lo sentimos mucho, por algun error en la red tu compra no ha sido procesada", "Error en la compra", JOptionPane.CLOSED_OPTION);
+			JOptionPane.showMessageDialog(shoppingPanel, "Lo sentimos mucho, "
+					+ "por algun error en la red tu compra no ha sido procesada", 
+					"Error en la compra", JOptionPane.CLOSED_OPTION);
 		}
 		
 	}
