@@ -6,7 +6,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import edu.wedderz.core.app.view.ShopPanel;
 import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.search.BusquedaLocalidades;
 import edu.wedderz.core.app.view.shop.ShopPanel;
