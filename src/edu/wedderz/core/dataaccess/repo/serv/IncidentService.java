@@ -16,7 +16,7 @@ public interface IncidentService {
 	
 	public Set<Incident> setIncident(int stationId); // setIncident(asunto,descripcion,idEstacion) para insertar una incidencia
 	//setIncident(asunto,descripción,idEstacion) //para insertar una incidencia
-	// setIncidentAcceptDeny(asunto,estacionID); //para aceptar o denegar la incidencia
+	// setIncidentAcceptDeny(asunto,estacionID,bolean); //para aceptar o denegar la incidencia
 	//getIncident(asunto); //para pillar la incidencia
 	
 	public boolean createIncident(Incident incident);
