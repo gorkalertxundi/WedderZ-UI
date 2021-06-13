@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.view;
+package edu.wedderz.core.app.view.incidents;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -17,7 +17,9 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import edu.wedderz.core.app.controller.IncidenciasController;
+import edu.wedderz.core.app.controller.incidents.IncidenciasController;
+import edu.wedderz.core.app.view.UIFrame;
+
 import java.awt.List;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

@@ -1,4 +1,4 @@
-package edu.wedderz.core.app.controller;
+package edu.wedderz.core.app.controller.incidents;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +12,7 @@ import edu.wedderz.core.app.view.BusquedaLocalidades;
 import edu.wedderz.core.app.view.LocationSelectionPanel;
 import edu.wedderz.core.app.view.ShopPanel;
 import edu.wedderz.core.app.view.UIFrame;
-import edu.wedderz.core.app.view.IncidenciasAdmin;
+import edu.wedderz.core.app.view.incidents.IncidenciasAdmin;
 
 public class IncidenciasController implements ActionListener {
 
@@ -21,7 +21,7 @@ public class IncidenciasController implements ActionListener {
 	IncidenciasAdmin incidencias;
 	
 	
-	public IncidenciasController( IncidenciasAdmin incidencias) {
+	public IncidenciasController (IncidenciasAdmin incidencias) {
 		
 		this.incidencias=incidencias;
 	}
