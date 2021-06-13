@@ -26,15 +26,14 @@ public class UserStationListController implements ActionListener {
 	private static StationService stationService = new StationServiceImpl();
 	private static DataService dataService = new DataServiceImpl();
 
-	UIFrame parent;
-	int a;
-	UserStationListView userStationListView;
-	StationList stationList;
-	StationListController stationListController;
+	private UIFrame parent;
+	private UserStationListView userStationListView;
+	private StationList stationList;
+	private StationListController stationListController;
 
-	StationDataListController stationDataListController;
+	private StationDataListController stationDataListController;
 
-	UserStationController stationPanel;
+	private UserStationController stationPanel;
 
 	public UserStationListController(UIFrame parent, User user) {
 		this.parent = parent;

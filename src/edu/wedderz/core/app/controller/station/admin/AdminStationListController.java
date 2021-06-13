@@ -32,15 +32,14 @@ public class AdminStationListController implements ActionListener {
 	private static UserService userService = new UserServiceImpl();
 	private static LocalityService localityService = new LocalityServiceImpl();
 
-	UIFrame parent;
-	int a;
-	AdminStationListView adminStationListView;
-	StationList stationList;
-	StationListController stationListController;
+	private UIFrame parent;
+	private AdminStationListView adminStationListView;
+	private StationList stationList;
+	private StationListController stationListController;
 
-	StationDataListController stationDataListController;
+	private StationDataListController stationDataListController;
 
-	AdminStationController stationPanel;
+	private AdminStationController stationPanel;
 
 	public AdminStationListController(UIFrame parent) {
 		this.parent = parent;
