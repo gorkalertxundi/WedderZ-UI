@@ -6,11 +6,14 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
+import edu.wedderz.core.app.controller.station.admin.AdminStationListController;
+import edu.wedderz.core.app.controller.station.user.UserStationListController;
 import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.incidents.Incidencias;
 import edu.wedderz.core.app.view.incidents.IncidenciasAdmin;
 import edu.wedderz.core.app.view.search.BusquedaLocalidades;
 import edu.wedderz.core.app.view.shop.ShopPanel;
+import edu.wedderz.core.dataaccess.repo.impl.UserServiceImpl;
 
 public class MiAction extends AbstractAction {
 
@@ -29,16 +32,21 @@ public class MiAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (command) {
-		case "Buscar localidad":
+		case "Search locality":
 			frame.setPanel(new BusquedaLocalidades(frame));
 			break;
-		case "Cerrar sesión":
+		case "Log out":
 			break;
-		case "Iniciar sesión":
+		case "Log in":
 			break;
-		case "Mis estaciones":
+		case "My stations":
+			frame.setPanel(new UserStationListController(frame, new UserServiceImpl().getUserById(13)).getUserStationListView());
 			break;
-		case "Mis Incidencias":
+			
+		case "Administrate stations":
+			frame.setPanel(new AdminStationListController(frame).getAdminStationListView());
+			break;
+		case "My incidences":
 			if(true) {
 				frame.setPanel(new IncidenciasAdmin(frame));
 			}
@@ -47,8 +55,8 @@ public class MiAction extends AbstractAction {
 			}
 			
 			break;
-		case "Comprar estaciones":
-			frame.setPanel(new ShopPanel()); //
+		case "Purchase stations":
+			frame.setPanel(new ShopPanel());
 			break;
 		default:
 			break;

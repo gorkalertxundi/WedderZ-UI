@@ -2,6 +2,7 @@ package edu.wedderz.core.dataaccess.repo.serv;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Set;
 
 import edu.wedderz.core.model.Locality;
@@ -12,11 +13,11 @@ public interface StationService {
 
 	public Station getStationById(int estationId);
 	
-	public Set<Station> getStationsByLocality(Locality locality);
+	public Collection<Station> getStationsByLocality(Locality locality);
 	
-	public Set<Station> getStationsOfUser(int userId);
+	public Collection<Station> getStationsOfUser(int userId);
 	
-	public Set<Integer> registerStations(User user, Connection con, int ammount) throws SQLException;
+	public Collection<Integer> registerStations(User user, Connection con, int ammount) throws SQLException;
 	
 	public boolean updateStation(Station station);
 	

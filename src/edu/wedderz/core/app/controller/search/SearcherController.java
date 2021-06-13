@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NavigableSet;
@@ -19,9 +18,8 @@ import edu.wedderz.core.app.view.UIFrame;
 import edu.wedderz.core.app.view.search.BusquedaLocalidades;
 import edu.wedderz.core.app.view.search.LocationSelectionPanel;
 import edu.wedderz.core.app.view.search.WeatherPanel;
-import edu.wedderz.core.model.DataType;
 import edu.wedderz.core.model.Locality;
-import edu.wedderz.core.model.ProcessedData;
+import edu.wedderz.core.model.Data;
 
 public class SearcherController implements ActionListener{
 	
@@ -53,11 +51,11 @@ public class SearcherController implements ActionListener{
 		weatherPanel.setPast5DaysValues(getDayString(5), 5, -3.6, 15, 22, 43);
 		
 	}
-	private void setValuesWeatherDay5(Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherDay5(Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -80,11 +78,11 @@ public class SearcherController implements ActionListener{
 		}
 		weatherPanel.setPast5DaysValues(getDayString(5), 1, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
-	private void setValuesWeatherDay4(Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherDay4(Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -107,11 +105,11 @@ public class SearcherController implements ActionListener{
 		}
 		weatherPanel.setPast4DaysValues(getDayString(4), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
-	private void setValuesWeatherDay3(Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherDay3(Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -134,11 +132,11 @@ public class SearcherController implements ActionListener{
 		}
 		weatherPanel.setPast3DaysValues(getDayString(3), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
-	private void setValuesWeatherDay2(Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherDay2(Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -161,11 +159,11 @@ public class SearcherController implements ActionListener{
 		}
 		weatherPanel.setPast2DaysValues(getDayString(2), 5, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
-	private void setValuesWeatherDay1(Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherDay1(Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -188,11 +186,11 @@ public class SearcherController implements ActionListener{
 		}
 		weatherPanel.setPast1DaysValues(getDayString(1), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), temperaturaMax.getValue(), humedadData.getValue());		
 	}
-	private void setValuesWeatherToday(Locality localityToShow, Set<ProcessedData> set) {
-		ProcessedData presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
-		Iterator<ProcessedData> iterator = set.iterator();
+	private void setValuesWeatherToday(Locality localityToShow, Set<Data> set) {
+		Data presionData = null, temperaturaMax = null, temperaturaMin = null, temperaturaMedia = null, viento = null, humedadData = null;
+		Iterator<Data> iterator = set.iterator();
 		while(iterator.hasNext()) {
-			ProcessedData processedData = iterator.next();
+			Data processedData = iterator.next();
 			if (processedData.getDataType().getDataTypeId() == 3) {
 				humedadData = processedData;
 			}
@@ -219,11 +217,11 @@ public class SearcherController implements ActionListener{
 				viento.getValue());
 	}
 	
-	private void setValuesWeather(Map<Date, Set<ProcessedData>> processedDatas, Locality localityToShow) {
+	private void setValuesWeather(Map<Date, Set<Data>> processedDatas, Locality localityToShow) {
 		NavigableSet<Date> navigableSet = ((TreeMap) processedDatas).descendingKeySet();
 		Iterator<Date> iterator = navigableSet.descendingIterator();
 		
-		Set<ProcessedData> processedDataIterator = processedDatas.get(iterator.next());
+		Set<Data> processedDataIterator = processedDatas.get(iterator.next());
 		setValuesWeatherDay5(processedDataIterator);
 		processedDataIterator = processedDatas.get(iterator.next());
 		setValuesWeatherDay4(processedDataIterator);
@@ -286,7 +284,7 @@ public class SearcherController implements ActionListener{
 				}
 			}
 			
-			Map<Date, Set<ProcessedData>> processedDatas = model.getProcessedData(localityToShow);
+			Map<Date, Set<Data>> processedDatas = model.getProcessedData(localityToShow);
 						
 			setValuesWeather(processedDatas, localityToShow);
 

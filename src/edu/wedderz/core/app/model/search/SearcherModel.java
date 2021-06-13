@@ -6,27 +6,25 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.postgresql.core.SetupQueryRunner;
-
 import edu.wedderz.core.dataaccess.repo.impl.CountryServiceImpl;
+import edu.wedderz.core.dataaccess.repo.impl.DataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.impl.LocalityServiceImpl;
-import edu.wedderz.core.dataaccess.repo.impl.ProcessedDataServiceImpl;
 import edu.wedderz.core.dataaccess.repo.serv.CountryService;
+import edu.wedderz.core.dataaccess.repo.serv.DataService;
 import edu.wedderz.core.dataaccess.repo.serv.LocalityService;
-import edu.wedderz.core.dataaccess.repo.serv.ProcessedDataService;
 import edu.wedderz.core.model.Country;
+import edu.wedderz.core.model.Data;
 import edu.wedderz.core.model.Locality;
-import edu.wedderz.core.model.ProcessedData;
 
 public class SearcherModel {
 	
 	LocalityService localityService;
-	ProcessedDataService processedDataService;
+	DataService processedDataService;
 	CountryService countryService;
 	
 	public SearcherModel() {
 		localityService = new LocalityServiceImpl();
-		processedDataService = new ProcessedDataServiceImpl();
+		processedDataService = new DataServiceImpl();
 		countryService = new CountryServiceImpl();
 	}
 
@@ -45,9 +43,9 @@ public class SearcherModel {
 		}
 	}
 
-	public Map<Date, Set<ProcessedData>> getProcessedData(Locality localidad) {
+	public Map<Date, Set<Data>> getProcessedData(Locality localidad) {
 	
-		Map<Date, Set<ProcessedData>> processedDatas = (Map<Date, Set<ProcessedData>>) processedDataService.getProcessedDataLatest(localidad, 6);
+		Map<Date, Set<Data>> processedDatas = (Map<Date, Set<Data>>) processedDataService.getProcessedDataLatest(localidad, 6);
 		
 		return processedDatas;
 	}
