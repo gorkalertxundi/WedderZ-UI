@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import edu.wedderz.core.app.controller.incidents.IncidenciasController2;
+import edu.wedderz.core.app.controller.incidents.IncidenciasController;
 
 
 
@@ -31,7 +31,8 @@ public class Incidencias extends JPanel  {
 	private JComboBox comboBoxEstaciones;
 	
 	public Incidencias(Frame frame) {
-		IncidenciasController2 incidenciascontroller;
+		IncidenciasAdmin incidenciasAdmin = null;
+		IncidenciasController incidenciascontroller;
 		
 		setBorder(new MatteBorder(20, 20, 20, 20, (Color) Color.WHITE));
 		setLayout(new BorderLayout(0, 0));
@@ -83,14 +84,18 @@ public class Incidencias extends JPanel  {
 		editorPaneDescripcion.setBackground(Color.LIGHT_GRAY);
 		panelDescripcion.add(editorPaneDescripcion);
 		
-		incidenciascontroller=new IncidenciasController2(this);
-		setActionListener(incidenciascontroller);
+
 		
+		
+		incidenciascontroller=new IncidenciasController(incidenciasAdmin,false,this);
+	
+		
+		setActionListener(incidenciascontroller);
 		ButtonGroup bg=new ButtonGroup();
 	}
 	
 	
-	public void setActionListener(IncidenciasController2 incidenciascontroller) {
+	public void setActionListener(IncidenciasController incidenciascontroller) {
 		//buttonEnviar.setActionCommand("buttonEnviar");
 		buttonEnviar.addActionListener(incidenciascontroller);
 			 

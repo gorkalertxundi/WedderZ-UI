@@ -7,24 +7,19 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.SystemColor;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import edu.wedderz.core.app.controller.incidents.IncidenciasController;
 import edu.wedderz.core.app.view.UIFrame;
-
-import java.awt.List;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import java.awt.SystemColor;
 
 
 
@@ -43,6 +38,7 @@ public class IncidenciasAdmin extends JPanel  {
 	 private JTextArea textAreaEstacion;
 	
 	public IncidenciasAdmin(UIFrame uiFrame) {
+		Incidencias incidencias = null;
 		IncidenciasController incidenciascontroller;
 		
 		setBorder(new MatteBorder(20, 20, 20, 20, (Color) Color.WHITE));
@@ -140,8 +136,10 @@ public class IncidenciasAdmin extends JPanel  {
 			gbc_button_11.gridy = 2;
 			panel.add(buttonDenegar, gbc_button_11);
 			
+	
 			
-			incidenciascontroller=new IncidenciasController(this);
+			
+			incidenciascontroller=new IncidenciasController(this,true,incidencias);
 			setActionListener(incidenciascontroller);
 			
 			buttonDenegar.addActionListener(incidenciascontroller);
