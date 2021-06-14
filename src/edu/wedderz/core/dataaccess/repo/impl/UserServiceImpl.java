@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 		Set<User> users = new HashSet<>();
 		
 		String query = "SELECT users_id, users_name, surname, phone, email, address, cif, country_id, is_admin "
-				+ "FROM wedderz.users WHERE LOWER(users_name) LIKE LOWER(?)";
+				+ "FROM wedderz.users WHERE LOWER(CONCAT(users_name, ' ', surname)) LIKE LOWER(?)";
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, "%" + name + "%");
