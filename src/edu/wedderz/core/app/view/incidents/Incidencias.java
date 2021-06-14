@@ -18,6 +18,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import edu.wedderz.core.app.controller.incidents.IncidenciasController2;
+import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
+import edu.wedderz.core.dataaccess.repo.serv.IncidentService;
+import edu.wedderz.core.dataaccess.repo.serv.StationService;
+import edu.wedderz.core.model.Station;
+import edu.wedderz.core.model.User;
 
 
 
@@ -28,7 +33,9 @@ public class Incidencias extends JPanel  {
 
 	JEditorPane editorPaneDescripcion;
 	Boolean prueba; 
-	private JComboBox comboBoxEstaciones;
+	private JComboBox<String> comboBoxEstaciones;
+	
+	StationService stationService = new StationServiceImpl();
 	
 	public Incidencias(Frame frame) {
 		IncidenciasController2 incidenciascontroller;
@@ -64,7 +71,16 @@ public class Incidencias extends JPanel  {
 		buttonEnviar.setFont(new Font("Dialog", Font.PLAIN, 17));
 		buttonEnviar.setActionCommand("buttonEnviar");
 	
-		
+		IncidentService incidetservice;
+		User u;
+		for(Station s : stationService.getStationsOfUser(13)) {
+			
+			comboBoxEstaciones.addItem(String.valueOf(s.getStationId()));
+			
+		}
+		//comboBoxEstaciones.addItem("28");
+		//comboBoxEstaciones.addItem("29");
+		//comboBoxEstaciones.addItem("30");
 		
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 5);
@@ -86,13 +102,14 @@ public class Incidencias extends JPanel  {
 		incidenciascontroller=new IncidenciasController2(this);
 		setActionListener(incidenciascontroller);
 		
+		
 		ButtonGroup bg=new ButtonGroup();
 	}
 	
 	
-	public void setActionListener(IncidenciasController2 incidenciascontroller) {
+	public void setActionListener(IncidenciasController2 incidenciascontroller2) {
 		//buttonEnviar.setActionCommand("buttonEnviar");
-		buttonEnviar.addActionListener(incidenciascontroller);
+		buttonEnviar.addActionListener(incidenciascontroller2);
 			 
 			}
 
@@ -106,6 +123,9 @@ public class Incidencias extends JPanel  {
 		return editorPaneDescripcion.getText();
 	}
 
+	public String getcomboBoxEstacionesValue() {
+		return comboBoxEstaciones.getSelectedItem().toString();
+	}
 
 
 

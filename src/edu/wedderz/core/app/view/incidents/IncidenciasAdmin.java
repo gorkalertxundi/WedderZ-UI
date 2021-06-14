@@ -17,8 +17,15 @@ import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import edu.wedderz.core.app.controller.incidents.IncidenciasController;
+import edu.wedderz.core.app.controller.incidents.IncidenciasControllerAdmin;
 import edu.wedderz.core.app.view.UIFrame;
+import edu.wedderz.core.dataaccess.repo.impl.IncidentServiceImpl;
+import edu.wedderz.core.dataaccess.repo.impl.StationServiceImpl;
+import edu.wedderz.core.dataaccess.repo.serv.IncidentService;
+import edu.wedderz.core.dataaccess.repo.serv.StationService;
+import edu.wedderz.core.model.Incident;
+import edu.wedderz.core.model.Station;
+import edu.wedderz.core.model.User;
 
 import java.awt.List;
 import javax.swing.JComboBox;
@@ -43,7 +50,7 @@ public class IncidenciasAdmin extends JPanel  {
 	 private JTextArea textAreaEstacion;
 	
 	public IncidenciasAdmin(UIFrame uiFrame) {
-		IncidenciasController incidenciascontroller;
+		IncidenciasControllerAdmin incidenciascontroller;
 		
 		setBorder(new MatteBorder(20, 20, 20, 20, (Color) Color.WHITE));
 		setLayout(new BorderLayout(0, 0));
@@ -92,6 +99,7 @@ public class IncidenciasAdmin extends JPanel  {
 		panel.add(comboBox, gbc_comboBox);
 		
 		buttonAceptar = new Button("Aceptar");
+		buttonAceptar.setActionCommand("buttonAceptar");
 		buttonAceptar.setFont(new Font("Dialog", Font.PLAIN, 17));
 		GridBagConstraints gbc_buttonAceptar = new GridBagConstraints();
 		gbc_buttonAceptar.insets = new Insets(0, 0, 5, 5);
@@ -141,7 +149,7 @@ public class IncidenciasAdmin extends JPanel  {
 			panel.add(buttonDenegar, gbc_button_11);
 			
 			
-			incidenciascontroller=new IncidenciasController(this);
+			incidenciascontroller=new IncidenciasControllerAdmin(this);
 			setActionListener(incidenciascontroller);
 			
 			buttonDenegar.addActionListener(incidenciascontroller);
@@ -151,7 +159,7 @@ public class IncidenciasAdmin extends JPanel  {
 	}
 	
 	
-	public void setActionListener(IncidenciasController incidenciascontroller) {
+	public void setActionListener(IncidenciasControllerAdmin incidenciascontroller) {
 		//buttonEnviar.setActionCommand("buttonEnviar");
 		buttonDenegar.addActionListener(incidenciascontroller);
 			 
@@ -168,10 +176,22 @@ public class IncidenciasAdmin extends JPanel  {
 	}
 
 	public void addIncidencias(JComboBox comboBox) {
+	
+		IncidentService incidetservice = new IncidentServiceImpl();
 		
-		comboBox.addItem("uno");
-		comboBox.addItem("dos");
-		comboBox.addItem("tres");
+		
+		incidetservice.getOpenIncidents();
+		
+		for(Incident i : incidetservice.getOpenIncidents()) {
+			
+			comboBox.addItem(String.valueOf(i.getIncidentId()));
+			
+		}
+		
+		
+		
+		
+		
 	}
 
 
@@ -189,7 +209,12 @@ public class IncidenciasAdmin extends JPanel  {
 		return comboBox.getSelectedItem().toString();
 	}
 
-
+	public void setEditorTextAreaEstacion(String stacionID) {
+		
+		textAreaEstacion.setText(stacionID);
+		
+	}
+	
 	
 
 	
