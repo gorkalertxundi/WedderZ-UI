@@ -670,7 +670,7 @@ public class WeatherPanel extends JPanel {
 	
 	public void setCurrentWeatherValues(String location, String countryCode, double weatherType, double temp, double minTemp, double maxTemp, double pressure, double humidity, double windVel) {
 		lblLocation.setText(location + ", " + countryCode);
-		lblCurTemperature.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
+		lblCurTemperature.setText(String.valueOf(Math.round(temp)) + " \u00BAC");
 		lblCurMinTempValue.setText(String.valueOf(Math.round(minTemp)) + " \u00BAC");
 		lblCurMaxTempValue.setText(String.valueOf(Math.round(maxTemp)) + " \u00BAC");
 		lblCurPressureValue.setText(String.valueOf(pressure) + " mbar");
