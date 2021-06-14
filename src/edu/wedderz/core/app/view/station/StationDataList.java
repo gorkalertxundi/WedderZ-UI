@@ -2,7 +2,6 @@ package edu.wedderz.core.app.view.station;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Collection;

@@ -4,18 +4,22 @@ public class Incident {
 
 	int incidentId;
 	String description;
+	String subject;
 	Station station;
-	int adminId;
+	Integer adminId;
+	boolean solved;
 	
-	public Incident(int incidentId, String description, Station station, int adminId) {
+	public Incident(int incidentId, String description, String subject, Station station, Integer adminId, boolean solved) {
 		super();
 		this.incidentId = incidentId;
 		this.description = description;
 		this.station = station;
 		this.adminId = adminId;
+		this.solved = solved;
+		this.subject = subject;
 	}
 
-	public int getAdminId() {
+	public Integer getAdminId() {
 		return adminId;
 	}
 
