@@ -34,13 +34,13 @@ public class DataServiceImpl implements DataService {
 			return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
 				+ "	FROM wedderz.processed_data\r\n" + "	WHERE locality_id = ?\r\n"
-				+ "	AND data_date BETWEEN ? AND NOW()" + " ORDER BY data_date DESC;";
+				+ " ORDER BY data_date DESC LIMIT ?;";
 
 		try (Connection con = PostgreSQLCon.getConnection()) {
 			PreparedStatement statement = con.prepareStatement(query);
 			int i = 1;
 			statement.setInt(i++, locality.getLocalityId());
-			statement.setDate(i++, Date.valueOf(LocalDate.now().minusDays(days)));
+			statement.setInt(i++, days);
 			statement.execute();
 			ResultSet rs = statement.getResultSet();
 			Set<DataType> types = new HashSet<>();
