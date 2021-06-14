@@ -31,6 +31,7 @@ public class MiAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		 
 		switch (command) {
 		case "Search locality":
 			frame.setPanel(new BusquedaLocalidades(frame));
