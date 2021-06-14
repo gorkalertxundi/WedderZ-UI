@@ -16,7 +16,7 @@ public interface OrderService {
 	
 	public Collection<Order> getOrdersByDate(Timestamp startDate, Timestamp endDate);
 	
-	public Order makeOrder(User user, int ammount, String address);
+	public Order makeOrder(User user, int ammount, int postalCode, String address, String province, String city, String country);
 	
 	public Integer getStationStock();
 	

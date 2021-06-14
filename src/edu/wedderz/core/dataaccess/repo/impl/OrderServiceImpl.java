@@ -28,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
 	public Order getOrderById(int orderId) {
 		Order order = null;
 		Set<Station> stations = new HashSet<Station>();
-		String query = "SELECT o.order_id, o.order_date, o.users_id, o.price, o.address,\r\n"
+		if(orderId <= 0) return order;
+		String query = "SELECT o.order_id, o.order_date, o.users_id, o.price, o.postal_code, o.address, o.province, o.city, o.country,\r\n"
 				+ "	l.station_id, s.description, s.latitude, s.longitude, s.locality_id, s.is_disabled\r\n"
 				+ "	FROM wedderz.orders o\r\n"
 				+ "	JOIN wedderz.line_orders l ON o.order_id = l.order_id\r\n"
@@ -44,7 +45,11 @@ public class OrderServiceImpl implements OrderService {
 			boolean orderProcessed = false;
 			Timestamp date;
 			double price;
+			int postalCode;
 			String address;
+			String province;
+			String city;
+			String country;
 			while(rs.next()) {
 				int stationId = rs.getInt("station_id");
 				String description = rs.getString("description");
@@ -53,14 +58,16 @@ public class OrderServiceImpl implements OrderService {
 				int localityId = rs.getInt("locality_id");
 				userId = rs.getInt("users_id");
 				boolean disabled = rs.getBoolean("is_disabled");
-				System.out.println(String.join(", ", String.valueOf(stationId),
-						description, String.valueOf(latitude), String.valueOf(longitude), String.valueOf(localityId), String.valueOf(userId), String.valueOf(disabled)));
 				if(!orderProcessed) {
 					date = rs.getTimestamp("order_date");
 					price = rs.getDouble("price");
+					postalCode = rs.getInt("postal_code");
 					address = rs.getString("address");
+					province = rs.getString("province");
+					city = rs.getString("city");
+					country = rs.getString("country");
 					orderProcessed = true;
-					order = new Order(orderId, userId, date, stations, price, address);
+					order = new Order(orderId, userId, date, stations, price, postalCode, address, province, city, country);
 				}
 				stations.add(new Station(stationId, description, latitude, longitude, localityService.getLocalityById(localityId), userId, disabled));
 			}
@@ -77,6 +84,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Collection<Order> getOrdersByUser(int userId) {
 		Collection<Order> orders = new HashSet<>();
+		/*  :)
 		String query = "SELECT order_id, order_date, users_id, price, address\r\n"
 				+ "	FROM wedderz.orders\r\n"
 				+ "	WHERE users_id = ?;";
@@ -89,13 +97,13 @@ public class OrderServiceImpl implements OrderService {
 			while (rs.next()) {
 				int orderId = rs.getInt("order_id");
 				orders.add(getOrderById(orderId));
-				System.out.println("CURRRR: " + orders.size());
 			}
 
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		*/
 
 		return orders;
 	}
@@ -104,7 +112,7 @@ public class OrderServiceImpl implements OrderService {
 	public Order getOrderByStation(int stationId) {
 		Order order = null;
 		Set<Station> stations = new HashSet<Station>();
-		String query = "SELECT o.order_id, o.order_date, o.users_id, o.price, o.address,\r\n"
+		String query = "SELECT o.order_id, o.order_date, o.users_id, o.price, o.postal_code, o.address, o.province, o.city, o.country,\r\n"
 				+ "	l.station_id, s.description, s.latitude, s.longitude, s.locality_id, s.is_disabled\r\n"
 				+ "	FROM wedderz.orders o\r\n"
 				+ "	JOIN wedderz.line_orders l ON o.order_id = l.order_id\r\n"
@@ -121,7 +129,11 @@ public class OrderServiceImpl implements OrderService {
 			boolean orderProcessed = false;
 			Timestamp date;
 			double price;
+			int postalCode;
 			String address;
+			String province;
+			String city;
+			String country;
 			while(rs.next()) {
 				orderId = rs.getInt("order_id");
 				userId = rs.getInt("user_id");
@@ -131,14 +143,16 @@ public class OrderServiceImpl implements OrderService {
 				int localityId = rs.getInt("locality_id");
 				userId = rs.getInt("users_id");
 				boolean disabled = rs.getBoolean("is_disabled");
-				System.out.println(String.join(", ", String.valueOf(stationId),
-						description, String.valueOf(latitude), String.valueOf(longitude), String.valueOf(localityId), String.valueOf(userId), String.valueOf(disabled)));
 				if(!orderProcessed) {
 					date = rs.getTimestamp("order_date");
 					price = rs.getDouble("price");
+					postalCode = rs.getInt("postal_code");
 					address = rs.getString("address");
+					province = rs.getString("province");
+					city = rs.getString("city");
+					country = rs.getString("country");
 					orderProcessed = true;
-					order = new Order(orderId, userId, date, stations, price, address);
+					order = new Order(orderId, userId, date, stations, price, postalCode, address, province, city, country);
 				}
 				stations.add(new Station(stationId, description, latitude, longitude, localityService.getLocalityById(localityId), userId, disabled));
 			}
@@ -169,7 +183,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order makeOrder(User user, int ammount, String address) {
+	public Order makeOrder(User user, int ammount, int postalCode, String address, String province, String city, String country) {
 		Order order = null;
 		if(ammount < 0) return order;
 		String stockQuery = "UPDATE wedderz.station_specs SET stock = (SELECT stock FROM wedderz.station_specs) - ?";
@@ -180,8 +194,8 @@ public class OrderServiceImpl implements OrderService {
 				+ "	LIMIT 1";
 		
 		String orderQuery = "INSERT INTO wedderz.orders(\r\n"
-				+ "	order_date, users_id, price, address)\r\n"
-				+ "	VALUES (?, ?, ?, ?);";
+				+ "	order_date, users_id, price, postal_code, address, province, city, country )\r\n"
+				+ "	VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		StringBuilder lineQuery = new StringBuilder("INSERT INTO wedderz.line_orders(\r\n"
 				+ "	order_id, station_id)\r\n"
@@ -192,12 +206,6 @@ public class OrderServiceImpl implements OrderService {
 			PreparedStatement statement = con.prepareStatement(stockQuery);
 			statement.setInt(1, ammount);
 			statement.execute();	
-			ResultSet stockRs = statement.getResultSet();
-			stockRs.next();
-			if(stockRs.getInt("stock") < ammount) {
-				statement.close();
-				return null;
-			}
 			//Get price
 			statement = con.prepareStatement(priceQuery);
 			statement.execute();
@@ -214,7 +222,11 @@ public class OrderServiceImpl implements OrderService {
 			statement.setTimestamp(i++, Timestamp.valueOf(LocalDateTime.now()));
 			statement.setInt(i++, user.getUserId());
 			statement.setDouble(i++, price);
+			statement.setInt(i++, postalCode);
 			statement.setString(i++, address);
+			statement.setString(i++, province);
+			statement.setString(i++, city);
+			statement.setString(i++, country);
 			if(statement.executeUpdate() > 0); //success
 
 			ResultSet rs = statement.getGeneratedKeys();
@@ -237,9 +249,7 @@ public class OrderServiceImpl implements OrderService {
 			statement.close();
 			
 			con.commit();
-			System.out.println(orderId);
 			order = getOrderById(orderId);
-			System.out.println(String.join(", ", order.getAddress(), String.valueOf(order.getOrderId()), String.valueOf(order.getStations().size())));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -13,9 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import edu.wedderz.core.app.controller.MiAction;
-import edu.wedderz.core.app.controller.station.user.UserStationListController;
 import edu.wedderz.core.app.view.search.BusquedaLocalidades;
-import edu.wedderz.core.dataaccess.repo.impl.UserServiceImpl;
 
 public class UIFrame extends JFrame {
 	

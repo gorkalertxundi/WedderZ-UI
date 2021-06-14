@@ -137,7 +137,7 @@ public class ShopController implements ChangeListener, ActionListener {
 		 */
 		User user = userServiceImpl.getUserById(15); 
 		int cantidad = shoppingPanel.getSelectedCantity();
-		Order order = orderService.makeOrder(user, cantidad, direccion);
+		Order order = orderService.makeOrder(user, cantidad, Integer.valueOf(codigoPostal), direccion, provincia, ciudad, pais);
 		if (order != null) {
 			JOptionPane.showMessageDialog(shoppingPanel, "¡Gracias por tu compra!", 
 					"Compra realizada", JOptionPane.CLOSED_OPTION);

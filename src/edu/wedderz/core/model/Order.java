@@ -6,13 +6,18 @@ import java.util.Set;
 public class Order {
 
 	int orderId;
-	int userId;
 	Timestamp date;
-	Set<Station> stations;
+	int userId;
 	double price;
 	String address;
+	int postalCode;
+	String province;
+	String city;
+	String country;
+	Set<Station> stations;
 
-	public Order(int orderId, int userId, Timestamp date, Set<Station> stations, double price, String address) {
+	public Order(int orderId, int userId, Timestamp date, Set<Station> stations, double price, int postalCode, String address,
+			String province, String city, String country) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -20,6 +25,10 @@ public class Order {
 		this.stations = stations;
 		this.price = price;
 		this.address = address;
+		this.postalCode = postalCode;
+		this.province = province;
+		this.city = city;
+		this.country = country;
 	}
 
 	public int getOrderId() {
@@ -49,5 +58,22 @@ public class Order {
 	public int getUserId() {
 		return userId;
 	}
+
+	public int getPostalCode() {
+		return postalCode;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+	
 
 }
