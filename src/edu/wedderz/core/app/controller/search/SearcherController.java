@@ -210,9 +210,9 @@ public class SearcherController implements ActionListener{
 				temperaturaMedia = processedData;
 			}
 
-		}
+		}	
 		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), 
-				localityToShow.getCountry().getCountryId(), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
+				localityToShow.getCountry().getCountryId().toUpperCase(), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
 				temperaturaMax.getValue(), presionData.getValue(), humedadData.getValue(),
 				viento.getValue());
 	}
