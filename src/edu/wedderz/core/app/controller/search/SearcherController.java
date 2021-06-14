@@ -211,8 +211,12 @@ public class SearcherController implements ActionListener{
 			}
 
 		}	
+		System.out.println("-----------------------");
+		System.out.println(temperaturaMax.getValue());
+		System.out.println(temperaturaMedia.getValue());
+		System.out.println(temperaturaMin.getValue());
 		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), 
-				localityToShow.getCountry().getCountryId().toUpperCase(), 3, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
+				localityToShow.getCountry().getCountryId().toUpperCase(), 0, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
 				temperaturaMax.getValue(), presionData.getValue(), humedadData.getValue(),
 				viento.getValue());
 	}
@@ -220,6 +224,11 @@ public class SearcherController implements ActionListener{
 	private void setValuesWeather(Map<Date, Set<Data>> processedDatas, Locality localityToShow) {
 		NavigableSet<Date> navigableSet = ((TreeMap) processedDatas).descendingKeySet();
 		Iterator<Date> iterator = navigableSet.descendingIterator();
+		
+		for (int i = 0; i < processedDatas.keySet().size() - 6; i++) {
+			iterator.next();
+
+		}
 		
 		Set<Data> processedDataIterator = processedDatas.get(iterator.next());
 		setValuesWeatherDay5(processedDataIterator);
