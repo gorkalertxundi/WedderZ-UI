@@ -39,6 +39,9 @@ public class Incident {
 		return station;
 	}
 	
+	public String getSubject() {
+		return subject;
+	}
 	
 	
 	

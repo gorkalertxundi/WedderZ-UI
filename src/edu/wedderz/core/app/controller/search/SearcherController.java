@@ -211,10 +211,7 @@ public class SearcherController implements ActionListener{
 			}
 
 		}	
-		System.out.println("-----------------------");
-		System.out.println(temperaturaMax.getValue());
-		System.out.println(temperaturaMedia.getValue());
-		System.out.println(temperaturaMin.getValue());
+
 		weatherPanel.setCurrentWeatherValues(localityToShow.getName(), 
 				localityToShow.getCountry().getCountryId().toUpperCase(), 0, temperaturaMedia.getValue(), temperaturaMin.getValue(), 
 				temperaturaMax.getValue(), presionData.getValue(), humedadData.getValue(),

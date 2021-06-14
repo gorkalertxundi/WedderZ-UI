@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -54,7 +56,7 @@ public class IncidentServiceImpl implements IncidentService {
 
 	@Override
 	public Collection<Incident> getOpenIncidents() {
-		Set<Incident> incidents = new TreeSet<>();
+		Set<Incident> incidents = new HashSet<>();
 		
 		String query = "SELECT incident_id, description, station_id, admin_id, subject, solved\r\n"
 				+ "	FROM wedderz.incident\r\n"
@@ -78,7 +80,7 @@ public class IncidentServiceImpl implements IncidentService {
 				
 				Station station = stationService.getStationById(stationId);
 				
-				statement.close();
+				
 				
 				incidents.add(new Incident(incidentId, description, subject, station, admin_id, solved));
 			}
@@ -100,7 +102,7 @@ public class IncidentServiceImpl implements IncidentService {
 				+ "	VALUES (?, ?, ?, ?, ?);";
 		
 		try (Connection con = PostgreSQLCon.getConnection()) {
-			PreparedStatement statement = con.prepareStatement(query);
+			PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			int i = 1;
 			statement.setString(i++, description);
 			statement.setInt(i++, stationId);
@@ -110,8 +112,8 @@ public class IncidentServiceImpl implements IncidentService {
 			
 			if(statement.executeUpdate() > 0) {
 				ResultSet rs = statement.getGeneratedKeys();
-				incident = new Incident(rs.getInt(1), description, subject, stationService.getStationById(stationId), null, false);
-				
+				if(rs.next()) incident = new Incident(rs.getInt(1), description, subject, stationService.getStationById(stationId), null, false);
+				else System.out.println("LOOOOL");
 			}
 			statement.close();
 		} catch (SQLException e) {
