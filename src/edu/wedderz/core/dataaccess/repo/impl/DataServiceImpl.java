@@ -33,7 +33,7 @@ public class DataServiceImpl implements DataService {
 		if (days <= 0)
 			return data;
 		String query = "SELECT locality_id, data_type_id, data_date, data_value\r\n"
-				+ "	FROM wedderz.processed_data\r\n" + "	WHERE locality_id = ?\r\n"
+				+ "	FROM wedderz.processed_data\r\n" + " WHERE locality_id = ?\r\n"
 				+ " ORDER BY data_date DESC LIMIT ?;";
 
 		try (Connection con = PostgreSQLCon.getConnection()) {
